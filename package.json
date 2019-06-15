@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "./scripts/build.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/WIVSW/linter/issues"
   },
-  "homepage": "https://github.com/WIVSW/linter#readme"
+  "homepage": "https://github.com/WIVSW/linter#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0",
+    "google-closure-compiler": "^20190528.0.0"
+  },
+  "dependencies": {
+    "esprima": "^4.0.1"
+  }
 }
