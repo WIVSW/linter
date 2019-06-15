@@ -9,6 +9,7 @@ OPTS=(
   "--entry_point=src/index.js"
 
   "./src/*.js"
+  "./node_modules/esprima/dist/esprima.js"
 )
 set -ex
 java -jar node_modules/google-closure-compiler-java/compiler.jar $(echo ${OPTS[*]})

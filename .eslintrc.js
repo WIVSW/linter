@@ -15,6 +15,8 @@ module.exports = {
   'rules': {
     "arrow-body-style": ["error", "as-needed"],
     "no-tabs": "off",
-    "indent": ["error", "tab"]
+    "indent": ["error", "tab"],
+    "no-console": "error",
+    "no-debugger": "error"
   },
 };

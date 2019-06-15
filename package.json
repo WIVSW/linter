@@ -24,9 +24,8 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-google": "^0.13.0",
+    "esprima": "^4.0.1",
     "google-closure-compiler": "^20190528.0.0"
   },
-  "dependencies": {
-    "esprima": "^4.0.1"
-  }
+  "dependencies": {}
 }
