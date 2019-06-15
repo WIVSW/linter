@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 OPTS=(
-  "--language_in=ES6_Strict"
+  "--language_in=ES6"
   "--language_out=ES5"
   "--module_resolution=NODE"
   "--process_common_js_modules"
