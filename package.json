@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./scripts/build.sh",
+    "test": "npm run test.eslint && npm run test.unit && npm run test.types",
+    "test.eslint": "$(npm bin)/eslint src/**/*.js",
+    "test.unit": "export NODE_ENV=test && mocha --recursive test/index.js",
+    "test.types": "node ./scripts/test-types.js",
+    "test.unit.watch": "$(npm bin)/nodemon --quiet --exec 'npm run test.unit'"
   },
   "repository": {
     "type": "git",
@@ -16,5 +21,15 @@
   "bugs": {
     "url": "https://github.com/WIVSW/linter/issues"
   },
-  "homepage": "https://github.com/WIVSW/linter#readme"
+  "homepage": "https://github.com/WIVSW/linter#readme",
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0",
+    "esprima": "^4.0.1",
+    "google-closure-compiler": "^20190528.0.0",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {}
 }
