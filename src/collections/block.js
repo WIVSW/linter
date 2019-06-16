@@ -50,11 +50,12 @@ class BlockCollection {
 	 */
 	_createBlocksList(source) {
 		const children = (parent, currentId) => {
+			const {getChildren, childId} = Block;
 			const block = new Block(parent, currentId);
-			const childs = Block.getChildren(parent);
+			const childs = getChildren(parent);
 
 			return [block].concat(childs.reduce((prev, objExp) =>
-				prev.concat(children(objExp, prev.length + currentId + 1)),
+				prev.concat(children(objExp, childId(currentId, prev.length))),
 			[]));
 		};
 
