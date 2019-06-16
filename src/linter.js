@@ -1,15 +1,17 @@
+const BlockCollection = require('./collections/block.js');
+
 /**
  */
 class Linter {
 	/**
+	 * @param {Object} ast
 	 */
-	constructor() {}
-
-	/**
-	 * @return {Linter}
-	 */
-	static init() {
-		return new Linter();
+	constructor(ast) {
+		/**
+		 * @type {BlockCollection}
+		 * @private
+		 */
+		this._collection = new BlockCollection(ast);
 	}
 };
 

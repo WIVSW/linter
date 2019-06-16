@@ -9,6 +9,7 @@ OPTS=(
   "--entry_point=src/index.js"
 
   "./src/*.js"
+  "./src/collections/*.js"
   "./node_modules/esprima/dist/esprima.js"
 )
 set -ex
