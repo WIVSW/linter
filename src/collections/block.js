@@ -1,3 +1,5 @@
+const Block = require('../models/block.js');
+
 /**
  */
 class BlockCollection {
@@ -32,6 +34,29 @@ class BlockCollection {
 		if (!source) {
 			return null;
 		}
+
+		return this._createBlocksList(source);
+	}
+
+	/**
+	 * @param {Array<Object>} source
+	 * @return {Array<Block>}
+	 * @private
+	 */
+	_createBlocksList(source) {
+		const children = (parent, currentId) => {
+			const block = new Block(parent, currentId);
+			const childs = Block.getChildren(parent);
+
+			return [block].concat(childs.reduce((prev, objExp) =>
+				prev.concat(children(objExp, prev.length + currentId + 1)),
+			[]));
+		};
+
+		return source.reduce(
+			(prev, objExp) =>
+				prev.concat(children(objExp, prev.length)), []
+		);
 	}
 
 	/**

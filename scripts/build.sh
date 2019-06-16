@@ -10,6 +10,7 @@ OPTS=(
 
   "./src/*.js"
   "./src/collections/*.js"
+  "./src/models/*.js"
   "./node_modules/esprima/dist/esprima.js"
 )
 set -ex
