@@ -12,6 +12,7 @@ OPTS=(
   "./src/collections/*.js"
   "./src/models/*.js"
   "./node_modules/esprima/dist/esprima.js"
+  "./externs/*.js"
 )
 set -ex
 java -jar node_modules/google-closure-compiler-java/compiler.jar $(echo ${OPTS[*]})

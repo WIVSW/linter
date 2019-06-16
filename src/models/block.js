@@ -1,3 +1,5 @@
+const {Syntax} = require('../../node_modules/esprima/dist/esprima.js');
+
 /**
  */
 class Block {
@@ -19,7 +21,7 @@ class Block {
 		const value = arrayProp && arrayProp.value;
 
 		if (value) {
-			if (value.type === 'ObjectExpression') {
+			if (value.type === Syntax.ObjectExpression) {
 				return [value];
 			} else if (value.elements) {
 				return value.elements;

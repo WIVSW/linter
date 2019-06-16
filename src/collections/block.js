@@ -1,4 +1,9 @@
 const Block = require('../models/block.js');
+const {Syntax} = require('../../node_modules/esprima/dist/esprima.js');
+/* eslint-disable no-unused-vars */
+/* import types for GCC */
+const ExpressionStatement = require('../../externs/expression-statement.js');
+/* eslint-enable no-unused-vars */
 
 /**
  */
@@ -65,7 +70,7 @@ class BlockCollection {
 	 * @private
 	 */
 	_getFirstArrayOfObjectExpressions(ast) {
-		const body = ast && ast.body;
+		const body = /** @type {ExpressionStatement} */ (ast && ast.body);
 		const expression = body && body[0] && body[0].expression;
 
 		if (!expression) {
@@ -75,7 +80,7 @@ class BlockCollection {
 		let expressions = null;
 
 		switch (expression.type) {
-		case 'ObjectExpression':
+		case Syntax.ObjectExpression:
 			/**
 			 * Fix incorrect position because of
 			 * workaround in index file
@@ -84,7 +89,7 @@ class BlockCollection {
 			expression.loc.start.column -= 1;
 			expressions = [expression];
 			break;
-		case 'ArrayExpression':
+		case Syntax.ArrayExpression:
 			expressions = expression.elements;
 			break;
 		}
