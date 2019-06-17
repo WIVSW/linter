@@ -45,11 +45,10 @@ class Block {
 		this.id = id;
 		this.block = block ? block.value : '';
 		this.elem = elem ? elem.value : null;
-		this.children = Block.getChildren(objExp)
-			.map((_, i) => Block.childId(id, i));
+		this.children = [];
 		this.mods = Block.getMods(objExp);
 		this.mix = Block.getMix(objExp);
-		this.parentId = optParentId || null;
+		this.parentId = typeof optParentId === 'number' ? optParentId : null;
 	}
 
 	/**

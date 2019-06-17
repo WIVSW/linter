@@ -15,7 +15,7 @@ class BlockCollection {
 		const list = this._parse(ast);
 
 		/**
-		 * @type {Array<Object>}
+		 * @type {Array<Block>}
 		 * @private
 		 */
 		this._list = list ? list : [];
@@ -30,7 +30,7 @@ class BlockCollection {
 
 	/**
 	 * @param {Object} ast
-	 * @return {?Array<Object>}
+	 * @return {?Array<Block>}
 	 * @private
 	 */
 	_parse(ast) {
@@ -49,18 +49,20 @@ class BlockCollection {
 	 * @private
 	 */
 	_createBlocksList(source) {
-		const children = (parent, currentId) => {
-			const block = new Block(parent, currentId);
+		const children = (parent, currentId, optParentId) => {
+			const block = new Block(parent, currentId, optParentId);
 			const childs = Block.getChildren(parent);
 
-			return [block].concat(childs.reduce((prev, objExp) =>
-				prev.concat(children(objExp, Block.childId(currentId, prev.length))),
-			[]));
+			return [block].concat(childs.reduce((prev, objExp) => {
+				const childId = Block.childId(currentId, prev.length);
+				block.children.push(childId);
+				return prev.concat(children(objExp, childId, currentId));
+			}, []));
 		};
 
 		return source.reduce(
 			(prev, objExp) =>
-				prev.concat(children(objExp, prev.length)), []
+				prev.concat(children(objExp, prev.length, null)), []
 		);
 	}
 
