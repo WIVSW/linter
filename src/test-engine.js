@@ -1,7 +1,8 @@
-const LinterError = require('./models/linter-error.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
+const LinterError = require('./models/linter-error.js');
 const BlockCollection = require('./collections/block.js');
+const Test = require('./tests/test.js');
 /* eslint-enable no-unused-vars */
 
 /**
@@ -18,7 +19,7 @@ class TestEngine {
 		this._blockCollection = params.blockCollection;
 
 		/**
-		 * @type {Array}
+		 * @type {Array<Test>}
 		 * @private
 		 */
 		this._tests = this._createTests();
@@ -29,12 +30,11 @@ class TestEngine {
 	 */
 	run() {
 		return this._tests
-			.map((test) => test.run())
-			.filter((status) => status instanceof LinterError);
+			.reduce((prev, test) => prev.concat(test.run()), []);
 	}
 
 	/**
-	 * @return {Array}
+	 * @return {Array<Test>}
 	 * @private
 	 */
 	_createTests() {
