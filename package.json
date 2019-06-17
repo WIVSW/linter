@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "build": "./scripts/build.sh",
-    "test": "npm run test.eslint && npm run test.unit && npm run test.types",
+    "test": "npm run test.eslint && npm run test.types && npm run test.unit",
     "test.eslint": "$(npm bin)/eslint src/**/*.js",
     "test.unit": "export NODE_ENV=test && mocha --recursive test/index.js",
-    "test.types": "node ./scripts/test-types.js",
-    "test.unit.watch": "$(npm bin)/nodemon --quiet --exec 'npm run test.unit'"
+    "test.types": "node  ./scripts/test-types.js",
+    "test.unit.watch": "$(npm bin)/nodemon --quiet --exec 'npm run test.unit'",
+    "test.unit.debug": "export NODE_ENV=test && mocha --inspect-brk --recursive test/index.js",
+    "test.unit.debug.watch": "$(npm bin)/nodemon --quiet --exec 'npm run test.unit.debug'"
   },
   "repository": {
     "type": "git",
