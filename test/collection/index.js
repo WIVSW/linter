@@ -34,6 +34,26 @@ describe('Collection test', () => {
 				mods: {},
 				mix: [],
 				parentId: null,
+				location: {
+					start: {
+						column: 1,
+						line: 1,
+					},
+					end: {
+						column: 2,
+						line: 17,
+					},
+				},
+				contentLocation: {
+					start: {
+						column: 16,
+						line: 3,
+					},
+					end: {
+						column: 6,
+						line: 16,
+					},
+				},
 			},
 			{
 				id: 1,
@@ -43,6 +63,26 @@ describe('Collection test', () => {
 				mods: {},
 				mix: [],
 				parentId: 0,
+				location: {
+					start: {
+						column: 9,
+						line: 4,
+					},
+					end: {
+						column: 10,
+						line: 11,
+					},
+				},
+				contentLocation: {
+					start: {
+						column: 24,
+						line: 7,
+					},
+					end: {
+						column: 14,
+						line: 10,
+					},
+				},
 			},
 			{
 				id: 2,
@@ -52,6 +92,17 @@ describe('Collection test', () => {
 				mods: {size: 'xl'},
 				mix: [],
 				parentId: 1,
+				location: {
+					start: {
+						column: 24,
+						line: 7,
+					},
+					end: {
+						column: 14,
+						line: 10,
+					},
+				},
+				contentLocation: null,
 			},
 			{
 				id: 3,
@@ -61,6 +112,17 @@ describe('Collection test', () => {
 				mods: {size: 'xxl'},
 				mix: [],
 				parentId: 0,
+				location: {
+					start: {
+						column: 9,
+						line: 12,
+					},
+					end: {
+						column: 10,
+						line: 15,
+					},
+				},
+				contentLocation: null,
 			},
 		];
 		const actual = new BlockCollection(input).getAllItems();
