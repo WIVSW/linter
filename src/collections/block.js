@@ -55,7 +55,7 @@ class BlockCollection {
 
 			return [block].concat(childs.reduce((prev, objExp) => {
 				const childId = Block.childId(currentId, prev.length);
-				block.children.push(childId);
+				block.children.push(/** @type {number} */ (childId));
 				return prev.concat(children(objExp, childId, currentId));
 			}, []));
 		};
