@@ -5,7 +5,7 @@ const {Syntax} = require('../../node_modules/esprima/dist/esprima.js');
 class Block {
 	/**
 	 * @param {Object} objExp
-	 * @param {number} id
+	 * @param {?number} id
 	 * @param {number=} optParentId
 	 */
 	constructor(objExp, id, optParentId) {
@@ -35,44 +35,40 @@ class Block {
 
 	/**
 	 * @param {Object} objExp
-	 * @param {number} id
+	 * @param {?number} id
 	 * @param {number=} optParentId
 	 */
 	_parse(objExp, id, optParentId) {
-		const {
-			getProp,
-			getChildren,
-			getMix,
-			getMods,
-			childId,
-		} = Block;
-
-
-		const block = getProp(objExp, 'block');
-		const elem = getProp(objExp, 'elem');
+		const block = Block.getProp(objExp, 'block');
+		const elem = Block.getProp(objExp, 'elem');
 
 		this.id = id;
 		this.block = block ? block.value : '';
 		this.elem = elem ? elem.value : null;
-		this.children = getChildren(objExp).map((_, i) => childId(id, i));
-		this.mods = getMods(objExp);
-		this.mix = getMix(objExp);
+		this.children = Block.getChildren(objExp)
+			.map((_, i) => Block.childId(id, i));
+		this.mods = Block.getMods(objExp);
+		this.mix = Block.getMix(objExp);
 		this.parentId = optParentId || null;
 	}
 
 	/**
-	 * @param {number} parentIndex
+	 * @param {?number} parentIndex
 	 * @param {number} currentIndex
-	 * @return {number}
+	 * @return {?number}
 	 */
 	static childId(parentIndex, currentIndex) {
+		if (typeof parentIndex !== 'number') {
+			return null;
+		}
+
 		return parentIndex + currentIndex + 1;
 	}
 
 	/**
 	 * @param {Object} objExp
 	 * @param {string} name
-	 * @return {*}
+	 * @return {?Object}
 	 */
 	static getProp(objExp, name) {
 		const props = objExp.properties;
@@ -126,8 +122,7 @@ class Block {
 	 * @return {Array<Block>}
 	 */
 	static getMix(objExp) {
-		const {getProp, toArray} = Block;
-		return toArray(getProp(objExp, 'mix'))
+		return Block.toArray(Block.getProp(objExp, 'mix'))
 			.map((data) => new Block(data, null));
 	}
 
@@ -136,8 +131,7 @@ class Block {
 	 * @return {Array<Object>}
 	 */
 	static getChildren(parent) {
-		const {getProp, toArray} = Block;
-		return toArray(getProp(parent, 'content'));
+		return Block.toArray(Block.getProp(parent, 'content'));
 	};
 }
 
