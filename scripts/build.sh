@@ -11,6 +11,8 @@ OPTS=(
   "./src/*.js"
   "./src/collections/*.js"
   "./src/models/*.js"
+  "./src/models/errors/form/*.js"
+  "./src/tests/*.js"
   "./node_modules/esprima/dist/esprima.js"
   "./externs/*.js"
 )

@@ -29,6 +29,39 @@ class BlockCollection {
 	}
 
 	/**
+	 * @param {number} id
+	 * @return {?Block}
+	 */
+	getById(id) {
+		return this._list[id] || null;
+	}
+
+	/**
+	 * @param {string} name
+	 * @return {Array<Block>}
+	 */
+	getBlocksByName(name) {
+		return this._list.filter((item) =>
+			item.block === name &&
+			!item.isElement()
+		);
+	}
+
+	/**
+	 * @param {Block} block
+	 * @return {Array<Block>}
+	 */
+	getAllBlockChidren(block) {
+		const children = (childIds) => childIds.reduce((prev, id) => {
+			const elem = this.getById(id);
+			return prev
+				.concat([elem])
+				.concat(children(elem.children));
+		}, []);
+		return children(block.children);
+	}
+
+	/**
 	 * @param {Object} ast
 	 * @return {?Array<Block>}
 	 * @private
