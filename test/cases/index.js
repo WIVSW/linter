@@ -1,3 +1,6 @@
 describe('Test cases', () => {
-	require('./input-label-sizes.js');
+	describe('Form tests', () => {
+		require('./input-label-sizes.js');
+		require('./content-vertical-space.js');
+	});
 });
