@@ -1,3 +1,4 @@
+const InputLabelSize = require('./tests/input-label-sizes.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
 const LinterError = require('./models/linter-error.js');
@@ -38,7 +39,9 @@ class TestEngine {
 	 * @private
 	 */
 	_createTests() {
-		return [];
+		return [
+			new InputLabelSize(this._blockCollection),
+		];
 	}
 }
 

@@ -8,7 +8,7 @@ globalObj['lint'] = function(jsonString) {
 	try {
 		ast = esprima.parseScript(`(${jsonString})`, {loc: true});
 	} catch (error) {
-		return [LinterError.prototype.toObject.call(error)];
+		return [];
 	}
 
 	const linter = new Linter(ast);

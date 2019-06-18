@@ -14,13 +14,13 @@ class Test {
 	constructor(params) {
 		/**
 		 * @type {BlockCollection}
-		 * @private
+		 * @protected
 		 */
 		this._collection = params.collection;
 
 		/**
 		 * @type {Function}
-		 * @private
+		 * @protected
 		 */
 		this._Model = params.Model;
 	}
@@ -50,7 +50,7 @@ class Test {
 	 * @protected
 	 */
 	_isValidBlock(block) {
-		return false;
+		return true;
 	}
 
 	/**

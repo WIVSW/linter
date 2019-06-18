@@ -1,7 +1,7 @@
 const assert = require('assert');
-const source = `{
+const valid = `{
     "block": "form",
-    "content" [
+    "content": [
         {
             "block": "form",
             "elem": "label",
@@ -10,9 +10,21 @@ const source = `{
                 "mods": { "size": "l" }
             }
         },
-        // правильно
         { "block": "input", "mods": { "size": "l" } }
-        // неправильно
+    ]
+}`;
+
+const invalid = `{
+    "block": "form",
+    "content": [
+        {
+            "block": "form",
+            "elem": "label",
+            "content": {
+                "block": "text",
+                "mods": { "size": "l" }
+            }
+        },
         { "block": "input", "mods": { "size": "s" } }
     ]
 }`;
@@ -23,13 +35,17 @@ const expected = [
 		"error": "Подписи и поля в форме должны быть одного размера",
 		"location": {
 			"start": { "column": 1, "line": 1 },
-			"end": { "column": 2, "line": 17 }
+			"end": { "column": 2, "line": 14 }
 		}
 	}
 ];
 
 it('FORM.INPUT_AND_LABEL_SIZES_SHOULD_BE_EQUAL', () => {
-	global.linter(source, (actual) => {
+	global.linter(valid, (actual) => {
+		assert.deepStrictEqual(actual, []);
+	});
+
+	global.linter(invalid, (actual) => {
 		assert.deepStrictEqual(actual, expected);
 	});
 });

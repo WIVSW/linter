@@ -41,6 +41,21 @@ class Block {
 	}
 
 	/**
+	 * @return {boolean}
+	 */
+	isElement() {
+		return Boolean(this.elem);
+	}
+
+	/**
+	 * @return {boolean}
+	 */
+	isFormTextElement() {
+		const {LABEL, TEXT, INPUT} = Block.TextElements;
+		return [LABEL, TEXT, INPUT].includes(this.block);
+	}
+
+	/**
 	 * @param {Object} objExp
 	 * @param {?number} id
 	 * @param {number=} optParentId
@@ -143,5 +158,15 @@ class Block {
 		return Block.toArray(Block.getProp(parent, 'content'));
 	};
 }
+
+
+/**
+ * @enum {string}
+ */
+Block.TextElements = {
+	LABEL: 'label',
+	TEXT: 'text',
+	INPUT: 'input',
+};
 
 module.exports = Block;
