@@ -1,10 +1,10 @@
-const Test = require('./test.js');
+const Test = require('../test.js');
 const InputLabelSizeError =
-	require('../models/errors/form/input-label-sizes.js');
+	require('../../models/errors/form/input-label-sizes.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
-const Block = require('../models/block.js');
-const BlockCollection = require('../collections/block.js');
+const Block = require('../../models/block.js');
+const BlockCollection = require('../../collections/block.js');
 /* eslint-enable no-unused-vars */
 
 /**
