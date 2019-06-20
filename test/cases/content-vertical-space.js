@@ -24,8 +24,8 @@ const expected = [
 		"code": "FORM.CONTENT_VERTICAL_SPACE_IS_INVALID",
 		"error": "Вертикальный внутренний отступ контентного элемента формы не валиден",
 		"location": {
-			"start": { "column": 15, "line": 3 },
-			"end": { "column": 5, "line": 8 }
+			"start": { "column": 16, "line": 3 },
+			"end": { "column": 6, "line": 8 }
 		}
 	}
 ];

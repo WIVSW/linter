@@ -48,6 +48,43 @@ class BlockCollection {
 	}
 
 	/**
+	 * @param {string} blockName
+	 * @param {string} elemName
+	 * @return {Array<Block>}
+	 */
+	getElementsByName(blockName, elemName) {
+		return this._list
+			.filter((block) =>
+				block.block === blockName &&
+				block.elem === elemName
+			);
+	}
+
+	/**
+	 * @param {string} block
+	 * @param {string} elem
+	 * @param {string} mod
+	 * @return {Array<Block>}
+	 */
+	getElementsWithMod(block, elem, mod) {
+		return this._list
+			.filter((item) =>
+				item.block === block &&
+				item.elem === elem &&
+				item.mix.some((mixed) => mixed.mods[mod])
+			);
+	}
+
+	/**
+	 * @param {Block} block
+	 * @return {Array<Block>}
+	 */
+	getDirectChildren(block) {
+		return block.children
+			.map((id) => this.getById(id));
+	}
+
+	/**
 	 * @param {Block} block
 	 * @return {Array<Block>}
 	 */

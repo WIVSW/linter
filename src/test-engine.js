@@ -1,4 +1,5 @@
 const InputLabelSize = require('./tests/form/input-label-sizes.js');
+const ContentVerticalSpace = require('./tests/form/content-vertical-space.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
 const LinterError = require('./models/linter-error.js');
@@ -41,6 +42,7 @@ class TestEngine {
 	_createTests() {
 		return [
 			new InputLabelSize(this._blockCollection),
+			new ContentVerticalSpace(this._blockCollection),
 		];
 	}
 }
