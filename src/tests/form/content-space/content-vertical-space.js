@@ -1,9 +1,9 @@
-const ContentSpaceTest = require('./content-space.js');
+const ContentSpaceTest = require('../content-space.js');
 const ContentVerticalSpaceError =
-	require('../../models/errors/form/content-vertical-space.js');
+	require('../../../models/errors/form/content-vertical-space.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
-const BlockCollection = require('../../collections/block.js');
+const BlockCollection = require('../../../collections/block.js');
 /* eslint-enable no-unused-vars */
 
 /**

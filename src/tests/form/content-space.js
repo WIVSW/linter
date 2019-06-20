@@ -7,9 +7,9 @@ const BlockCollection = require('../../collections/block.js');
 
 /**
  */
-class ContentVerticalSpace extends Test {
+class ContentSpace extends Test {
 	/**
-	 * @param {ContentVerticalSpace.Params} params
+	 * @param {ContentSpace.Params} params
 	 */
 	constructor(params) {
 		super({
@@ -71,6 +71,6 @@ class ContentVerticalSpace extends Test {
  *     step: number
  * }}
  */
-ContentVerticalSpace.Params;
+ContentSpace.Params;
 
-module.exports = ContentVerticalSpace;
+module.exports = ContentSpace;
