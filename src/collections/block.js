@@ -22,6 +22,40 @@ class BlockCollection {
 	}
 
 	/**
+	 * @param {Block} childBlock
+	 * @return {?Block}
+	 */
+	getForm(childBlock) {
+		let parent = childBlock;
+
+		while (
+			parent &&
+			parent.block !== 'form' &&
+			typeof parent.parentId === 'number'
+		) {
+			parent = this.getById(parent.parentId);
+		}
+
+		return parent && parent.block === 'form' ?
+			parent : null;
+	}
+
+	/**
+	 * @param {Block} formBlock
+	 * @return {?string}
+	 */
+	getRefrenceTextSize(formBlock) {
+		const child = this
+			.getAllBlockChidren(formBlock)
+			.find((child) =>
+				child.isFormTextElement() &&
+				Boolean(child.mods['size'])
+			);
+
+		return child && child.mods['size'] || null;
+	}
+
+	/**
 	 * @return {Array<Object>}
 	 */
 	getAllItems() {

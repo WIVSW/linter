@@ -34,31 +34,26 @@ class ContentSpace extends Test {
 	 * @override
 	 */
 	_selectBlocks(collection) {
-		return collection
-			.getElementsByName('form', 'content');
+		return collection.getElementsWithMod('form', 'content', this._mod);
 	}
 
 	/**
 	 * @override
 	 */
 	_isValidBlock(block) {
-		const mixes = block.mix.filter((mixed) => mixed.mods[this._mod]);
-		const inputs = this._collection
-			.getDirectChildren(block)
-			.filter((child) =>
-				child.block === 'input' &&
-				child.mods['size']
-			);
+		const form = this._collection.getForm(block);
+		const refrence = form && this._collection.getRefrenceTextSize(form);
+		const expected = refrence && Block.getSiblingSize(refrence, this._step);
 
-		if (mixes.length !== 1 || inputs.length !== 1) {
+		if (!expected) {
 			return true;
 		}
 
-		const size = inputs[0].mods['size'];
-		const expected = Block.getSiblingSize(size, this._step);
-		const actual = mixes[0].mods[this._mod];
-
-		return expected === actual;
+		return block.mix
+			.map((mixed) => mixed.mods[this._mod])
+			.filter((size) =>
+				size && expected !== size
+			).length <= 0;
 	}
 }
 
