@@ -48,14 +48,6 @@ class Block {
 	}
 
 	/**
-	 * @return {boolean}
-	 */
-	isFormTextElement() {
-		const {LABEL, TEXT, INPUT} = Block.TextElements;
-		return [LABEL, TEXT, INPUT].includes(this.block);
-	}
-
-	/**
 	 * @param {Object} objExp
 	 * @param {?number} id
 	 * @param {number=} optParentId
@@ -157,6 +149,33 @@ class Block {
 	static getChildren(parent) {
 		return Block.toArray(Block.getProp(parent, 'content'));
 	};
+
+	/**
+	 * @param {string} size
+	 * @param {number} steps
+	 * @return {?string}
+	 */
+	static getSiblingSize(size, steps) {
+		return Block.getSizeByIndex(
+			Block.getIndexBySize(size) + steps
+		) || null;
+	}
+
+	/**
+	 * @param {string} size
+	 * @return {number}
+	 */
+	static getIndexBySize(size) {
+		return Block.SIZES.indexOf(size);
+	}
+
+	/**
+	 * @param {number} index
+	 * @return {?string}
+	 */
+	static getSizeByIndex(index) {
+		return Block.SIZES[index] || null;
+	}
 }
 
 
@@ -168,5 +187,20 @@ Block.TextElements = {
 	TEXT: 'text',
 	INPUT: 'input',
 };
+
+
+/**
+ * @const {Array<string>}
+ */
+Block.SIZES = [
+	'xxxs',
+	'xxs',
+	's',
+	'm',
+	'l',
+	'xl',
+	'xxl',
+	'xxxl',
+];
 
 module.exports = Block;

@@ -1,10 +1,10 @@
-const Test = require('./test.js');
+const Test = require('../test.js');
 const InputLabelSizeError =
-	require('../models/errors/form/input-label-sizes.js');
+	require('../../models/errors/form/input-label-sizes.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
-const Block = require('../models/block.js');
-const BlockCollection = require('../collections/block.js');
+const Block = require('../../models/block.js');
+const BlockCollection = require('../../collections/block.js');
 /* eslint-enable no-unused-vars */
 
 /**
@@ -39,7 +39,10 @@ class InputLabelSize extends Test {
 	_isValidBlock(block) {
 		return this._collection
 			.getAllBlockChidren(block)
-			.filter((child) => child.isFormTextElement() && child.mods['size'])
+			.filter((child) =>
+				this._collection.isFormTextElement(child) &&
+				child.mods['size']
+			)
 			.map((child) => child.mods['size'])
 			.filter((val, i, self) => self.indexOf(val) === i)
 			.length <= 1;

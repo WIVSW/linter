@@ -19,6 +19,71 @@ class BlockCollection {
 		 * @private
 		 */
 		this._list = list ? list : [];
+
+		/**
+		 * @type {Object<number, ?string>}
+		 * @private
+		 */
+		this._formsSizeCache = {};
+	}
+
+	/**
+	 * @param {Block} block
+	 * @return {boolean}
+	 */
+	isFormTextElement(block) {
+		const {INPUT, TEXT, LABEL} = Block.TextElements;
+		if (block.block === INPUT) {
+			return true;
+		}
+
+		if (block.block === TEXT && typeof block.parentId === 'number') {
+			const parent = this.getById(block.parentId);
+
+			return parent ? parent.elem === LABEL : false;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param {Block} childBlock
+	 * @return {?Block}
+	 */
+	getForm(childBlock) {
+		let parent = childBlock;
+		const isForm = (block) => block.block === 'form' && !block.elem;
+
+		while (
+			parent &&
+			!isForm(parent) &&
+			typeof parent.parentId === 'number'
+		) {
+			parent = this.getById(parent.parentId);
+		}
+
+		return parent && isForm(parent) ?
+			parent : null;
+	}
+
+	/**
+	 * @param {Block} childBlock
+	 * @return {?string}
+	 */
+	getRefrenceTextSize(childBlock) {
+		const form = this.getForm(childBlock);
+
+		if (!form) {
+			return null;
+		}
+
+		const id = /** @type {number} */ (form.id);
+
+		if (typeof this._formsSizeCache[id] === 'undefined') {
+			this._formsSizeCache[id] = this._getRefrenceTextSize(form);
+		}
+
+		return this._formsSizeCache[id];
 	}
 
 	/**
@@ -48,17 +113,67 @@ class BlockCollection {
 	}
 
 	/**
+	 * @param {string} blockName
+	 * @param {string} elemName
+	 * @return {Array<Block>}
+	 */
+	getElementsByName(blockName, elemName) {
+		return this._list
+			.filter((block) =>
+				block.block === blockName &&
+				block.elem === elemName
+			);
+	}
+
+	/**
+	 * @param {string} block
+	 * @param {string} elem
+	 * @param {string} mod
+	 * @return {Array<Block>}
+	 */
+	getElementsWithMod(block, elem, mod) {
+		return this._list
+			.filter((item) =>
+				item.block === block &&
+				item.elem === elem &&
+				item.mix.some((mixed) => mixed.mods[mod])
+			);
+	}
+
+	/**
+	 * @param {Block} block
+	 * @return {Array<Block>}
+	 */
+	getDirectChildren(block) {
+		return block.children
+			.map((id) => this.getById(id));
+	}
+
+	/**
 	 * @param {Block} block
 	 * @return {Array<Block>}
 	 */
 	getAllBlockChidren(block) {
-		const children = (childIds) => childIds.reduce((prev, id) => {
-			const elem = this.getById(id);
-			return prev
-				.concat([elem])
-				.concat(children(elem.children));
-		}, []);
-		return children(block.children);
+		const children = this.getDirectChildren(block);
+		return children
+			.concat(children
+				.reduce((prev, child) =>
+					prev.concat(this.getAllBlockChidren(child)), []
+				)
+			);
+	}
+
+	/**
+	 * @param {Block} formBlock
+	 * @return {?string}
+	 * @private
+	 */
+	_getRefrenceTextSize(formBlock) {
+		const child = formBlock && this
+			.getAllBlockChidren(formBlock)
+			.find((child) => Boolean(child.mods['size']));
+
+		return child && child.mods['size'] || null;
 	}
 
 	/**

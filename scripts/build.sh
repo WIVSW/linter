@@ -13,6 +13,9 @@ OPTS=(
   "./src/models/*.js"
   "./src/models/errors/form/*.js"
   "./src/tests/*.js"
+  "./src/tests/form/*.js"
+  "./src/tests/form/space/*.js"
+  "./src/tests/form/text-size/*.js"
   "./node_modules/esprima/dist/esprima.js"
   "./externs/*.js"
 )
