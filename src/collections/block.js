@@ -19,6 +19,12 @@ class BlockCollection {
 		 * @private
 		 */
 		this._list = list ? list : [];
+
+		/**
+		 * @type {Object<number, ?string>}
+		 * @private
+		 */
+		this._formsSizeCache = {};
 	}
 
 	/**
@@ -66,11 +72,18 @@ class BlockCollection {
 	 */
 	getRefrenceTextSize(childBlock) {
 		const form = this.getForm(childBlock);
-		const child = form && this
-			.getAllBlockChidren(form)
-			.find((child) => Boolean(child.mods['size']));
 
-		return child && child.mods['size'] || null;
+		if (!form) {
+			return null;
+		}
+
+		const id = /** @type {number} */ (form.id);
+
+		if (typeof this._formsSizeCache[id] === 'undefined') {
+			this._formsSizeCache[id] = this._getRefrenceTextSize(form);
+		}
+
+		return this._formsSizeCache[id];
 	}
 
 	/**
@@ -148,6 +161,19 @@ class BlockCollection {
 					prev.concat(this.getAllBlockChidren(child)), []
 				)
 			);
+	}
+
+	/**
+	 * @param {Block} formBlock
+	 * @return {?string}
+	 * @private
+	 */
+	_getRefrenceTextSize(formBlock) {
+		const child = formBlock && this
+			.getAllBlockChidren(formBlock)
+			.find((child) => Boolean(child.mods['size']));
+
+		return child && child.mods['size'] || null;
 	}
 
 	/**
