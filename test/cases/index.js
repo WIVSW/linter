@@ -8,5 +8,6 @@ describe('Test cases', () => {
 		require('./footer-text-size.js');
 		require('./header-vertical-space.js');
 		require('./header-horizontal-space.js');
+		require('./footer-vertical-space.js');
 	});
 });
