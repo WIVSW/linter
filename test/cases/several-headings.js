@@ -19,13 +19,13 @@ const invalid = `[
 
 const expected = [
 	{
-		"code": "TEXT.SEVERAL_H1",
-		"error": "Заголовок первого уровня должен быть один на странице",
-		"location": {
-			"start": { "column": 5, "line": 6 },
-			"end": { "column": 6, "line": 9 }
-		}
-	}
+		'code': 'TEXT.SEVERAL_H1',
+		'error': 'Заголовок первого уровня должен быть один на странице',
+		'location': {
+			'start': {'column': 5, 'line': 6},
+			'end': {'column': 6, 'line': 9},
+		},
+	},
 ];
 
 it('TEXT.SEVERAL_H1', () => {

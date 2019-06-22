@@ -8,7 +8,8 @@ const valid = `{
             {
                 "block": "form",
                 "elem":  "content-item",
-                "mix": [{ "block": "form", "elem": "item", "mods": { "indent-b": "xl" } }],
+                "mix": [{ "block": "form", "elem": ` +
+					`"item", "mods": { "indent-b": "xl" } }],
                 "mods": { "indent-b": "xl" },
                 "content": { "block": "input", "mods": { "size": "l" } }
             },
@@ -30,7 +31,8 @@ const invalid = `{
             {
                 "block": "form",
                 "elem":  "content-item",
-                "mix": [{ "block": "form", "elem": "item", "mods": { "indent-b": "l" } }],
+                "mix": [{ "block": "form", "elem": ` +
+					`"item", "mods": { "indent-b": "l" } }],
                 "content": { "block": "input", "mods": { "size": "l" } }
             },
             {
@@ -44,13 +46,13 @@ const invalid = `{
 
 const expected = [
 	{
-		"code": "FORM.CONTENT_ITEM_INDENT_IS_INVALID",
-		"error": "Не валидные отступы между строк формы",
-		"location": {
-			"start": { "column": 13, "line": 7 },
-			"end": { "column": 14, "line": 12 }
-		}
-	}
+		'code': 'FORM.CONTENT_ITEM_INDENT_IS_INVALID',
+		'error': 'Не валидные отступы между строк формы',
+		'location': {
+			'start': {'column': 13, 'line': 7},
+			'end': {'column': 14, 'line': 12},
+		},
+	},
 ];
 
 it('FORM.CONTENT_ITEM_INDENT_IS_INVALID', () => {

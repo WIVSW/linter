@@ -31,13 +31,13 @@ const invalid = `{
 
 const expected = [
 	{
-		"code": "FORM.INPUT_AND_LABEL_SIZES_SHOULD_BE_EQUAL",
-		"error": "Подписи и поля в форме должны быть одного размера",
-		"location": {
-			"start": { "column": 1, "line": 1 },
-			"end": { "column": 2, "line": 14 }
-		}
-	}
+		'code': 'FORM.INPUT_AND_LABEL_SIZES_SHOULD_BE_EQUAL',
+		'error': 'Подписи и поля в форме должны быть одного размера',
+		'location': {
+			'start': {'column': 1, 'line': 1},
+			'end': {'column': 2, 'line': 14},
+		},
+	},
 ];
 
 it('FORM.INPUT_AND_LABEL_SIZES_SHOULD_BE_EQUAL', () => {
