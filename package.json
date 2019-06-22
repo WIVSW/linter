@@ -6,7 +6,7 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "test": "npm run test.eslint && npm run test.types && npm run test.unit",
-    "test.eslint": "$(npm bin)/eslint src/**/*.js",
+    "test.eslint": "$(npm bin)/eslint src/*/*.js",
     "test.unit": "export NODE_ENV=test && mocha --recursive test/index.js",
     "test.types": "node  ./scripts/test-types.js",
     "test.unit.watch": "$(npm bin)/nodemon --quiet --exec 'npm run test.unit'",

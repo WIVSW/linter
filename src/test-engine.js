@@ -1,8 +1,11 @@
 const InputLabelSize = require('./tests/form/input-label-sizes.js');
-const ContentVerticalSpace = require('./tests/form/content-space/content-vertical-space.js');
-const ContentHorizontalSpace = require('./tests/form/content-space/content-horizontal-space.js');
+const ContentVerticalSpace =
+	require('./tests/form/content-space/content-vertical-space.js');
+const ContentHorizontalSpace =
+	require('./tests/form/content-space/content-horizontal-space.js');
 const ContentItemIndent = require('./tests/form/content-item-indent.js');
-const HeaderTextSize = require('./tests/form/text-size/header-text-size.js')
+const HeaderTextSize = require('./tests/form/text-size/header-text-size.js');
+const FooterTextSize = require('./tests/form/text-size/footer-text-size.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
 const LinterError = require('./models/linter-error.js');
@@ -49,6 +52,7 @@ class TestEngine {
 			new ContentHorizontalSpace(this._blockCollection),
 			new ContentItemIndent(this._blockCollection),
 			new HeaderTextSize(this._blockCollection),
+			new FooterTextSize(this._blockCollection),
 		];
 	}
 }
