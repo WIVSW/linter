@@ -9,5 +9,6 @@ describe('Test cases', () => {
 		require('./header-vertical-space.js');
 		require('./header-horizontal-space.js');
 		require('./footer-vertical-space.js');
+		require('./footer-horizontal-space.js');
 	});
 });
