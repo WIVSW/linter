@@ -52,8 +52,8 @@ const expected = [
 		"code": "FORM.HEADER_TEXT_SIZE_IS_INVALID",
 		"error": "Не валидный размер текста header",
 		"location": {
-			"start": { "column": 16, "line": 8 },
-			"end": { "column": 17, "line": 13 }
+			"start": { "column": 17, "line": 8 },
+			"end": { "column": 18, "line": 13 }
 		}
 	}
 ];

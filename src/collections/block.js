@@ -27,16 +27,17 @@ class BlockCollection {
 	 */
 	getForm(childBlock) {
 		let parent = childBlock;
+		const isForm = (block) => block.block === 'form' && !block.elem;
 
 		while (
 			parent &&
-			parent.block !== 'form' &&
+			!isForm(parent) &&
 			typeof parent.parentId === 'number'
 		) {
 			parent = this.getById(parent.parentId);
 		}
 
-		return parent && parent.block === 'form' ?
+		return parent && isForm(parent) ?
 			parent : null;
 	}
 
@@ -48,10 +49,7 @@ class BlockCollection {
 		const form = this.getForm(childBlock);
 		const child = form && this
 			.getAllBlockChidren(form)
-			.find((child) =>
-				child.isFormTextElement() &&
-				Boolean(child.mods['size'])
-			);
+			.find((child) => Boolean(child.mods['size']));
 
 		return child && child.mods['size'] || null;
 	}
@@ -124,13 +122,13 @@ class BlockCollection {
 	 * @return {Array<Block>}
 	 */
 	getAllBlockChidren(block) {
-		const children = (childIds) => childIds.reduce((prev, id) => {
-			const elem = this.getById(id);
-			return prev
-				.concat([elem])
-				.concat(children(elem.children));
-		}, []);
-		return children(block.children);
+		const children = this.getDirectChildren(block);
+		return children
+			.concat(children
+				.reduce((prev, child) =>
+					prev.concat(this.getAllBlockChidren(child)), []
+				)
+			);
 	}
 
 	/**
