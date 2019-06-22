@@ -11,4 +11,9 @@ describe('Test cases', () => {
 		require('./footer-vertical-space.js');
 		require('./footer-horizontal-space.js');
 	});
+	describe('Heading tests', () => {
+		require('./several-headings.js');
+		require('./heading-two-position.js');
+		require('./heading-three-position.js');
+	});
 });
