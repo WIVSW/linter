@@ -15,6 +15,8 @@ const FooterVerticalSpace =
 const FooterHorizontalSpace =
 	require('./tests/form/space/footer-horizontal-space.js');
 const SeveralHeadings = require('./tests/heading/several-headings.js');
+const HeadingTwoPosition =
+	require('./tests/heading/position/heading-two-position.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
 const LinterError = require('./models/linter-error.js');
@@ -67,6 +69,7 @@ class TestEngine {
 			new FooterVerticalSpace(this._blockCollection),
 			new FooterHorizontalSpace(this._blockCollection),
 			new SeveralHeadings(this._blockCollection),
+			new HeadingTwoPosition(this._blockCollection),
 		];
 	}
 }
