@@ -102,6 +102,18 @@ class BlockCollection {
 	}
 
 	/**
+	 * @param {string} type
+	 * @return {Array<Block>}
+	 */
+	getHeadings(type) {
+		return this._list
+			.filter((block) =>
+				block.block === 'text' &&
+				block.mods['type'] === type
+			);
+	}
+
+	/**
 	 * @param {string} name
 	 * @return {Array<Block>}
 	 */

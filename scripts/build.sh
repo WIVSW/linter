@@ -12,10 +12,12 @@ OPTS=(
   "./src/collections/*.js"
   "./src/models/*.js"
   "./src/models/errors/form/*.js"
+  "./src/models/errors/heading/*.js"
   "./src/tests/*.js"
   "./src/tests/form/*.js"
   "./src/tests/form/space/*.js"
   "./src/tests/form/text-size/*.js"
+  "./src/tests/heading/*.js"
   "./node_modules/esprima/dist/esprima.js"
   "./externs/*.js"
 )
