@@ -48,14 +48,6 @@ class Block {
 	}
 
 	/**
-	 * @return {boolean}
-	 */
-	isFormTextElement() {
-		const {LABEL, TEXT, INPUT} = Block.TextElements;
-		return [LABEL, TEXT, INPUT].includes(this.block);
-	}
-
-	/**
 	 * @param {Object} objExp
 	 * @param {?number} id
 	 * @param {number=} optParentId

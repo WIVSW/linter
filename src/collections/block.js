@@ -22,6 +22,25 @@ class BlockCollection {
 	}
 
 	/**
+	 * @param {Block} block
+	 * @return {boolean}
+	 */
+	isFormTextElement(block) {
+		const {INPUT, TEXT, LABEL} = Block.TextElements;
+		if (block.block === INPUT) {
+			return true;
+		}
+
+		if (block.block === TEXT && typeof block.parentId === 'number') {
+			const parent = this.getById(block.parentId);
+
+			return parent ? parent.elem === LABEL : false;
+		}
+
+		return false;
+	}
+
+	/**
 	 * @param {Block} childBlock
 	 * @return {?Block}
 	 */

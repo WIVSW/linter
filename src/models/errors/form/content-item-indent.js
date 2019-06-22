@@ -6,7 +6,7 @@ const Location = require('../../location.js');
 
 /**
  */
-class InputLabelSize extends LinterError {
+class ContentItemIndent extends LinterError {
 	/**
 	 * @param {Location} location
 	 */
@@ -19,4 +19,4 @@ class InputLabelSize extends LinterError {
 	}
 }
 
-module.exports = InputLabelSize;
+module.exports = ContentItemIndent;

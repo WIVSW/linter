@@ -39,7 +39,10 @@ class InputLabelSize extends Test {
 	_isValidBlock(block) {
 		return this._collection
 			.getAllBlockChidren(block)
-			.filter((child) => child.isFormTextElement() && child.mods['size'])
+			.filter((child) =>
+				this._collection.isFormTextElement(child) &&
+				child.mods['size']
+			)
 			.map((child) => child.mods['size'])
 			.filter((val, i, self) => self.indexOf(val) === i)
 			.length <= 1;
