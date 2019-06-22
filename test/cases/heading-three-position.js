@@ -26,13 +26,14 @@ describe('TEXT.INVALID_H3_POSITION', () => {
 
 		const expected = [
 			{
-				"code": "TEXT.INVALID_H3_POSITION",
-				"error": "Заголовок третьего уровня не может следовать перед заголовком второго уровня",
-				"location": {
-					"start": { "column": 5, "line": 2 },
-					"end": { "column": 6, "line": 5 }
-				}
-			}
+				'code': 'TEXT.INVALID_H3_POSITION',
+				'error': 'Заголовок третьего уровня не может следовать ' +
+					'перед заголовком второго уровня',
+				'location': {
+					'start': {'column': 5, 'line': 2},
+					'end': {'column': 6, 'line': 5},
+				},
+			},
 		];
 
 		global.linter(valid, (actual) => {
@@ -81,13 +82,14 @@ describe('TEXT.INVALID_H3_POSITION', () => {
 
 		const expected = [
 			{
-				"code": "TEXT.INVALID_H3_POSITION",
-				"error": "Заголовок третьего уровня не может следовать перед заголовком второго уровня",
-				"location": {
-					"start": { "column": 14, "line": 4 },
-					"end": { "column": 4, "line": 7 }
-				}
-			}
+				'code': 'TEXT.INVALID_H3_POSITION',
+				'error': 'Заголовок третьего уровня не может следовать ' +
+					'перед заголовком второго уровня',
+				'location': {
+					'start': {'column': 14, 'line': 4},
+					'end': {'column': 4, 'line': 7},
+				},
+			},
 		];
 
 		global.linter(valid, (actual) => {

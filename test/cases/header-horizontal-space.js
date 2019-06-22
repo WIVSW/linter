@@ -5,7 +5,8 @@ const valid = `{
         {
             "block": "form",
             "elem": "header",
-            "mix": [ { "block": "form", "elem": "item", "mods": { "space-h": "xl" } } ]
+            "mix": [ { "block": "form", "elem": ` +
+				`"item", "mods": { "space-h": "xl" } } ]
         },
         {
             "block": "input",
@@ -22,7 +23,8 @@ const invalid = `{
         {
             "block": "form",
             "elem": "header",
-            "mix": [ { "block": "form", "elem": "item", "mods": { "space-h": "s" } } ]
+            "mix": [ { "block": "form", "elem": ` +
+				`"item", "mods": { "space-h": "s" } } ]
         },
         {
             "block": "input",
@@ -35,13 +37,13 @@ const invalid = `{
 
 const expected = [
 	{
-		"code": "FORM.HEADER_HORIZONTAL_SPACE_IS_INVALID",
-		"error": "Горизонтальный внутренний отступ заголовка формы не валиден",
-		"location": {
-			"start": { "column": 9, "line": 4 },
-			"end": { "column": 10, "line": 8 }
-		}
-	}
+		'code': 'FORM.HEADER_HORIZONTAL_SPACE_IS_INVALID',
+		'error': 'Горизонтальный внутренний отступ заголовка формы не валиден',
+		'location': {
+			'start': {'column': 9, 'line': 4},
+			'end': {'column': 10, 'line': 8},
+		},
+	},
 ];
 
 it('FORM.HEADER_HORIZONTAL_SPACE_IS_INVALID', () => {
