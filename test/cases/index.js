@@ -4,5 +4,6 @@ describe('Test cases', () => {
 		require('./content-vertical-space.js');
 		require('./content-horizontal-space.js');
 		require('./content-item-indent.js');
+		require('./header-text-size.js');
 	});
 });
