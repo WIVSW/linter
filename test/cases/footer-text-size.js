@@ -58,7 +58,7 @@ const expected = [
 	}
 ];
 
-it('FORM.HEADER_TEXT_SIZE_IS_INVALID', () => {
+it('FORM.FOOTER_TEXT_SIZE_IS_INVALID', () => {
 	global.linter(valid, (actual) => {
 		assert.deepStrictEqual(actual, []);
 	});

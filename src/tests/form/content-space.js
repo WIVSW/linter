@@ -49,7 +49,7 @@ class ContentSpace extends Test {
 		}
 
 		return block.mix
-			.map((mixed) => mixed.mods[this._mod])
+			.map((mixed) => mixed.elem === 'item' && mixed.mods[this._mod])
 			.filter((size) =>
 				size && expected !== size
 			).length <= 0;
