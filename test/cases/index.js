@@ -14,5 +14,6 @@ describe('Test cases', () => {
 	describe('Heading tests', () => {
 		require('./several-headings.js');
 		require('./heading-two-position.js');
+		require('./heading-three-position.js');
 	});
 });
