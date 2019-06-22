@@ -6,5 +6,6 @@ describe('Test cases', () => {
 		require('./content-item-indent.js');
 		require('./header-text-size.js');
 		require('./footer-text-size.js');
+		require('./header-vertical-space.js');
 	});
 });

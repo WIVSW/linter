@@ -1,4 +1,4 @@
-const ContentSpaceTest = require('../content-space.js');
+const SpaceTest = require('../space.js');
 const ContentHorizontalSpaceError =
 	require('../../../models/errors/form/content-horizontal-space.js');
 /* eslint-disable no-unused-vars */
@@ -8,7 +8,7 @@ const BlockCollection = require('../../../collections/block.js');
 
 /**
  */
-class ContentHorizontalSpace extends ContentSpaceTest {
+class ContentHorizontalSpace extends SpaceTest {
 	/**
 	 * @param {BlockCollection} collection
 	 */
@@ -16,6 +16,7 @@ class ContentHorizontalSpace extends ContentSpaceTest {
 		super({
 			Model: ContentHorizontalSpaceError,
 			collection,
+			elem: 'content',
 			mod: 'space-h',
 			step: 1,
 		});

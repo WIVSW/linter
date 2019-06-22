@@ -7,15 +7,21 @@ const BlockCollection = require('../../collections/block.js');
 
 /**
  */
-class ContentSpace extends Test {
+class Space extends Test {
 	/**
-	 * @param {ContentSpace.Params} params
+	 * @param {Space.Params} params
 	 */
 	constructor(params) {
 		super({
 			Model: params.Model,
 			collection: params.collection,
 		});
+
+		/**
+		 * @type {string}
+		 * @private
+		 */
+		this._elem = params.elem;
 
 		/**
 		 * @type {string}
@@ -34,7 +40,7 @@ class ContentSpace extends Test {
 	 * @override
 	 */
 	_selectBlocks(collection) {
-		return collection.getElementsWithMod('form', 'content', this._mod);
+		return collection.getElementsWithMod('form', this._elem, this._mod);
 	}
 
 	/**
@@ -61,10 +67,11 @@ class ContentSpace extends Test {
  * @typedef {{
  *     collection: BlockCollection,
  *     Model: Function,
+ *     elem: string,
  *     mod: string,
  *     step: number
  * }}
  */
-ContentSpace.Params;
+Space.Params;
 
-module.exports = ContentSpace;
+module.exports = Space;

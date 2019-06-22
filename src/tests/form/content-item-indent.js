@@ -55,7 +55,7 @@ class ContentItemIndent extends Test {
 
 		const isMixIndentValid = mix.mods['indent-b'] === expected;
 
-		return isMixIndentValid && block.mods['indent-b'] === expected
+		return isMixIndentValid && block.mods['indent-b'] === expected;
 	}
 }
 
