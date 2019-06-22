@@ -8,6 +8,8 @@ const HeaderTextSize = require('./tests/form/text-size/header-text-size.js');
 const FooterTextSize = require('./tests/form/text-size/footer-text-size.js');
 const HeaderVerticalSpace =
 	require('./tests/form/space/header-vertical-space.js');
+const HeaderHorizontalSpace =
+	require('./tests/form/space/header-horizontal-space.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
 const LinterError = require('./models/linter-error.js');
@@ -56,6 +58,7 @@ class TestEngine {
 			new HeaderTextSize(this._blockCollection),
 			new FooterTextSize(this._blockCollection),
 			new HeaderVerticalSpace(this._blockCollection),
+			new HeaderHorizontalSpace(this._blockCollection),
 		];
 	}
 }
