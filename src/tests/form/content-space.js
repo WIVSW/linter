@@ -41,8 +41,7 @@ class ContentSpace extends Test {
 	 * @override
 	 */
 	_isValidBlock(block) {
-		const form = this._collection.getForm(block);
-		const refrence = form && this._collection.getRefrenceTextSize(form);
+		const refrence = this._collection.getRefrenceTextSize(block);
 		const expected = refrence && Block.getSiblingSize(refrence, this._step);
 
 		if (!expected) {

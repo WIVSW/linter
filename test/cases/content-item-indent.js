@@ -45,10 +45,10 @@ const invalid = `{
 const expected = [
 	{
 		"code": "FORM.CONTENT_ITEM_INDENT_IS_INVALID",
-		"error": "Вертикальный внутренний отступ контентного элемента формы не валиден",
+		"error": "Не валидные отступы между строк формы",
 		"location": {
 			"start": { "column": 13, "line": 7 },
-			"end": { "column": 13, "line": 12 }
+			"end": { "column": 14, "line": 12 }
 		}
 	}
 ];

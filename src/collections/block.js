@@ -41,12 +41,13 @@ class BlockCollection {
 	}
 
 	/**
-	 * @param {Block} formBlock
+	 * @param {Block} childBlock
 	 * @return {?string}
 	 */
-	getRefrenceTextSize(formBlock) {
-		const child = this
-			.getAllBlockChidren(formBlock)
+	getRefrenceTextSize(childBlock) {
+		const form = this.getForm(childBlock);
+		const child = form && this
+			.getAllBlockChidren(form)
 			.find((child) =>
 				child.isFormTextElement() &&
 				Boolean(child.mods['size'])
