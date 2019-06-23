@@ -84,7 +84,7 @@ class BlockCollection {
 
 		const id = /** @type {number} */ (form.id);
 
-		if (typeof this._formsSizeCache[id] === 'undefined') {
+		if (typeof this._formsSizeCache[id] !== 'string') {
 			this._formsSizeCache[id] = this._getRefrenceTextSize(form);
 		}
 
@@ -188,7 +188,10 @@ class BlockCollection {
 	_getRefrenceTextSize(formBlock) {
 		const child = formBlock && this
 			.getAllBlockChidren(formBlock)
-			.find((child) => Boolean(child.mods['size']));
+			.find((child) =>
+				this.isFormTextElement(child) &&
+				Boolean(child.mods['size'])
+			);
 
 		return child && child.mods['size'] || null;
 	}
