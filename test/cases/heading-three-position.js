@@ -66,10 +66,10 @@ describe('TEXT.INVALID_H3_POSITION', () => {
 		const invalid = `[
     {
 		"block": "my-block",
-		"content": {
+        "content": {
 			"block": "text",
             "mods": { "type": "h3" }
-		}
+        }
 	},
     {
 		"block": "my-block",
@@ -86,8 +86,8 @@ describe('TEXT.INVALID_H3_POSITION', () => {
 				'error': 'Заголовок третьего уровня не может следовать ' +
 					'перед заголовком второго уровня',
 				'location': {
-					'start': {'column': 14, 'line': 4},
-					'end': {'column': 4, 'line': 7},
+					'start': {'column': 20, 'line': 4},
+					'end': {'column': 10, 'line': 7},
 				},
 			},
 		];
