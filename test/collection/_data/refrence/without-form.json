@@ -1,0 +1,24 @@
+[
+	{
+		"block": "text",
+		"mods": {
+			"size": "s"
+		}
+	},
+	{
+		"block": "form",
+		"elem": "label",
+		"content": {
+			"block": "text",
+			"mods": {
+				"size": "l"
+			}
+		}
+	},
+	{
+		"block": "input",
+		"mods": {
+			"size": "xxl"
+		}
+	}
+]
