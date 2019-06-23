@@ -40,7 +40,7 @@ class Space extends Test {
 	 * @override
 	 */
 	_selectBlocks(collection) {
-		return collection.getElementsWithMod('form', this._elem, this._mod);
+		return collection.getElementsByName('form', this._elem);
 	}
 
 	/**
@@ -54,8 +54,15 @@ class Space extends Test {
 			return true;
 		}
 
-		return block.mix
+		const items = block.mix
 			.map((mixed) => mixed.elem === 'item' && mixed.mods[this._mod])
+			.filter(Boolean);
+
+		if (!items.length) {
+			return false;
+		}
+
+		return items
 			.filter((size) =>
 				size && expected !== size
 			).length <= 0;

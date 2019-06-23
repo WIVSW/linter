@@ -33,9 +33,22 @@ class BlockCollection {
 	 */
 	isFormTextElement(block) {
 		const {INPUT, TEXT, LABEL} = Block.TextElements;
-		const texts = [INPUT, TEXT, LABEL];
-		return texts.includes(block.block) ||
-			texts.includes(block.elem);
+
+		if (
+			block.block === INPUT ||
+			block.block === 'form' &&
+			block.elem === LABEL
+		) {
+			return true;
+		}
+
+		if (block.block === TEXT && typeof block.parentId === 'number') {
+			const parent = this.getById(block.parentId);
+
+			return parent ? parent.elem === LABEL : false;
+		}
+
+		return false;
 	}
 
 	/**
