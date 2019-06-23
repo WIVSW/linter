@@ -40,7 +40,7 @@ class ContentItemIndent extends Test {
 		const expected = refrence && Block.getSiblingSize(refrence, 1);
 
 		if (!expected) {
-			return true;
+			return false;
 		}
 
 		const mix = block.mix.find((mix) =>
