@@ -22,6 +22,5 @@ it('Lint function should be defined in global scope', () => {
 
 // plug the tests
 // if you need specific test just comment others
-require('./collection/index.js');
+require('./collection');
 require('./cases/index.js');
-require('./common/index.js');
