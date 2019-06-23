@@ -63,13 +63,13 @@ describe('TEXT.INVALID_H2_POSITION', () => {
 	}
 ]`;
 
-		const invalid = `[
+const invalid = `[
     {
 		"block": "my-block",
-		"content": {
+        "content": {
 			"block": "text",
             "mods": { "type": "h2" }
-		}
+        }
 	},
     {
 		"block": "my-block",
@@ -86,8 +86,8 @@ describe('TEXT.INVALID_H2_POSITION', () => {
 				'error': 'Заголовок второго уровня не может следовать ' +
 					'перед заголовком первого уровня',
 				'location': {
-					'start': {'column': 14, 'line': 4},
-					'end': {'column': 4, 'line': 7},
+					'start': {'column': 20, 'line': 4},
+					'end': {'column': 10, 'line': 7},
 				},
 			},
 		];
