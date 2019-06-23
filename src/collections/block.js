@@ -33,17 +33,9 @@ class BlockCollection {
 	 */
 	isFormTextElement(block) {
 		const {INPUT, TEXT, LABEL} = Block.TextElements;
-		if (block.block === INPUT) {
-			return true;
-		}
-
-		if (block.block === TEXT && typeof block.parentId === 'number') {
-			const parent = this.getById(block.parentId);
-
-			return parent ? parent.elem === LABEL : false;
-		}
-
-		return false;
+		const texts = [INPUT, TEXT, LABEL];
+		return texts.includes(block.block) ||
+			texts.includes(block.elem);
 	}
 
 	/**
@@ -166,13 +158,13 @@ class BlockCollection {
 	 * @return {Array<Block>}
 	 */
 	getAllBlockChidren(block) {
-		const children = this.getDirectChildren(block);
-		return children
-			.concat(children
-				.reduce((prev, child) =>
-					prev.concat(this.getAllBlockChidren(child)), []
-				)
-			);
+		const children = (childIds) => childIds.reduce((prev, id) => {
+			const elem = this.getById(id);
+			return prev
+				.concat([elem])
+				.concat(children(elem.children));
+		}, []);
+		return children(block.children);
 	}
 
 	/**
