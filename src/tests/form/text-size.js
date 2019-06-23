@@ -38,7 +38,7 @@ class TextSize extends Test {
 			.getElementsByName('form', this._elem)
 			.map((elem) => collection.getAllBlockChidren(elem))
 			.reduce((prev, curr) => prev.concat(curr), [])
-			.filter((child) => child.block === 'text');
+			.filter((child) => Boolean(child.mods['size']));
 	}
 
 	/**
