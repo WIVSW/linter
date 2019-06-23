@@ -84,7 +84,7 @@ class BlockCollection {
 
 		const id = /** @type {number} */ (form.id);
 
-		if (typeof this._formsSizeCache[id] === 'undefined') {
+		if (typeof this._formsSizeCache[id] !== 'string') {
 			this._formsSizeCache[id] = this._getRefrenceTextSize(form);
 		}
 
