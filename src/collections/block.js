@@ -188,7 +188,10 @@ class BlockCollection {
 	_getRefrenceTextSize(formBlock) {
 		const child = formBlock && this
 			.getAllBlockChidren(formBlock)
-			.find((child) => Boolean(child.mods['size']));
+			.find((child) =>
+				this.isFormTextElement(child) &&
+				Boolean(child.mods['size'])
+			);
 
 		return child && child.mods['size'] || null;
 	}
