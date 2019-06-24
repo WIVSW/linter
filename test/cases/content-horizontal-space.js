@@ -35,10 +35,20 @@ const expected = [
 
 it('FORM.CONTENT_HORIZONTAL_SPACE_IS_INVALID', () => {
 	global.linter(valid, (actual) => {
-		assert.deepStrictEqual(actual, []);
+		const codes = actual.map((err) => err.code);
+		assert.strictEqual(actual.length, 1);
+		assert.strictEqual(
+			codes.includes('FORM.CONTENT_VERTICAL_SPACE_IS_INVALID'), true);
+		assert.strictEqual(
+			codes.includes('FORM.CONTENT_HORIZONTAL_SPACE_IS_INVALID'), false);
 	});
 
 	global.linter(invalid, (actual) => {
-		assert.deepStrictEqual(actual, expected);
+		const codes = actual.map((err) => err.code);
+		assert.strictEqual(actual.length, 2);
+		assert.strictEqual(
+			codes.includes('FORM.CONTENT_VERTICAL_SPACE_IS_INVALID'), true);
+		assert.strictEqual(
+			codes.includes('FORM.CONTENT_HORIZONTAL_SPACE_IS_INVALID'), true);
 	});
 });
