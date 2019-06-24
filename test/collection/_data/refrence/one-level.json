@@ -8,6 +8,12 @@
 			}
 		},
 		{
+			"block": "button",
+			"mods": {
+				"size": "xs"
+			}
+		},
+		{
 			"block": "form",
 			"elem": "label",
 			"content": {

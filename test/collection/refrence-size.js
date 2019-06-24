@@ -34,6 +34,6 @@ describe('Calculation of refrence size should work right...', () => {
 	});
 
 	it('without form', () => {
-		loopCollection(new BlockCollection(withoutFormAst), null);
+		loopCollection(new BlockCollection(withoutFormAst), 'xs');
 	});
 });
