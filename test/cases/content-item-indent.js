@@ -55,6 +55,10 @@ const expected = [
 	},
 ];
 
+const json = (json) => JSON.stringify(json, null, 4);
+const single = json(require('./_data/content-item-indent/single-invalid.json'));
+const two = json(require('./_data/content-item-indent/two-invalid.json'));
+
 it('FORM.CONTENT_ITEM_INDENT_IS_INVALID', () => {
 	global.linter(valid, (actual) => {
 		assert.deepStrictEqual(actual, []);
@@ -62,5 +66,19 @@ it('FORM.CONTENT_ITEM_INDENT_IS_INVALID', () => {
 
 	global.linter(invalid, (actual) => {
 		assert.deepStrictEqual(actual, expected);
+	});
+
+	global.linter(single, (actual) => {
+		const codes = actual.map((err) => err.code);
+		assert.strictEqual(actual.length, 1);
+		assert.strictEqual(
+			codes.includes('FORM.CONTENT_ITEM_INDENT_IS_INVALID'), true);
+	});
+
+	global.linter(two, (actual) => {
+		const codes = actual.map((err) => err.code);
+		assert.strictEqual(actual.length, 1);
+		assert.strictEqual(
+			codes.includes('FORM.CONTENT_ITEM_INDENT_IS_INVALID'), true);
 	});
 });

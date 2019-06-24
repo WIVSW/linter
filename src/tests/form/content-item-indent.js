@@ -18,6 +18,12 @@ class ContentItemIndent extends Test {
 			Model: ContentItemIndentError,
 			collection,
 		});
+
+		/**
+		 * @type {Object<number, Array<number>>}
+		 * @private
+		 */
+		this._parentToChidren = {};
 	}
 
 	/**
@@ -26,8 +32,22 @@ class ContentItemIndent extends Test {
 	 * @protected
 	 */
 	_selectBlocks(collection) {
-		return collection
+		const elements = collection
 			.getElementsByName('form', 'content-item');
+
+		elements.forEach((elem) => {
+			if (typeof elem.parentId !== 'number') {
+				return;
+			}
+
+			const parent = collection.getById(elem.parentId);
+
+			if (parent && typeof parent.id === 'number') {
+				this._parentToChidren[parent.id] = parent.children;
+			}
+		});
+
+		return elements;
 	}
 
 	/**
@@ -54,13 +74,38 @@ class ContentItemIndent extends Test {
 			typeof mix.mods['indent-b'] === 'string'
 		);
 
-		if (!mix) {
-			return true;
+		const isMixExist = Boolean(mix);
+		const isModExist = Boolean(block.mods['indent-b']);
+
+		if (this._isLastChild(block)) {
+			return !isMixExist && !isModExist;
+		} else if (!isMixExist || !isModExist) {
+			return false;
 		}
 
-		const isMixIndentValid = mix.mods['indent-b'] === expected;
+		return mix.mods['indent-b'] === expected &&
+			block.mods['indent-b'] === expected;
+	}
 
-		return isMixIndentValid && block.mods['indent-b'] === expected;
+	/**
+	 * @param {Block} elem
+	 * @return {boolean}
+	 */
+	_isLastChild(elem) {
+		if (typeof elem.parentId !== 'number') {
+			return false;
+		}
+
+		const children = this._parentToChidren[elem.parentId];
+
+		if (!children) {
+			return false;
+		}
+
+		const lastChildId = children.slice(-1)[0];
+
+		return typeof lastChildId === 'number' ?
+			lastChildId === elem.id : false;
 	}
 }
 
