@@ -186,6 +186,7 @@ Block.TextElements = {
 	LABEL: 'label',
 	TEXT: 'text',
 	INPUT: 'input',
+	BUTTON: 'button',
 };
 
 

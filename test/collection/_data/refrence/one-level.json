@@ -8,12 +8,6 @@
 			}
 		},
 		{
-			"block": "button",
-			"mods": {
-				"size": "xs"
-			}
-		},
-		{
 			"block": "form",
 			"elem": "label",
 			"content": {
@@ -21,6 +15,12 @@
 				"mods": {
 					"size": "l"
 				}
+			}
+		},
+		{
+			"block": "button",
+			"mods": {
+				"size": "xs"
 			}
 		},
 		{

@@ -19,6 +19,8 @@ const simpleAst = createAst(require('./_data/refrence/simple.json'));
 const headerAst = createAst(require('./_data/refrence/header.json'));
 const oneLevelAst = createAst(require('./_data/refrence/one-level.json'));
 const withoutFormAst = createAst(require('./_data/refrence/without-form.json'));
+const withFormButWithoutTextBlocksAst =
+	createAst(require('./_data/refrence/with-form-but-without-text-blocks.json'));
 
 describe('Calculation of refrence size should work right...', () => {
 	it('with simple form', () => {
@@ -34,6 +36,10 @@ describe('Calculation of refrence size should work right...', () => {
 	});
 
 	it('without form', () => {
-		loopCollection(new BlockCollection(withoutFormAst), 'xs');
+		loopCollection(new BlockCollection(withoutFormAst), null);
+	});
+
+	it('with form but without text blocks', () => {
+		loopCollection(new BlockCollection(withFormButWithoutTextBlocksAst), null);
 	});
 });
