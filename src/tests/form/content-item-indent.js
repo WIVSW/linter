@@ -37,7 +37,12 @@ class ContentItemIndent extends Test {
 	 */
 	_isValidBlock(block) {
 		const refrence = this._collection.getRefrenceTextSize(block);
-		const expected = refrence && Block.getSiblingSize(refrence, 1);
+
+		if (!refrence) {
+			return true;
+		}
+
+		const expected = Block.getSiblingSize(refrence, 1);
 
 		if (!expected) {
 			return false;

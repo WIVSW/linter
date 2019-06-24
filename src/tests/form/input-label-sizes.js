@@ -26,9 +26,7 @@ class InputLabelSize extends Test {
 	 * @protected
 	 */
 	_selectBlocks(collection) {
-		return collection
-			.getBlocksByName('form')
-			.filter((block) => block.children.length);
+		return collection.getBlocksByName('form');
 	}
 
 	/**
@@ -45,7 +43,7 @@ class InputLabelSize extends Test {
 			)
 			.map((child) => child.mods['size'])
 			.filter((val, i, self) => self.indexOf(val) === i)
-			.length <= 1;
+			.length === 1;
 	}
 }
 

@@ -48,7 +48,12 @@ class Space extends Test {
 	 */
 	_isValidBlock(block) {
 		const refrence = this._collection.getRefrenceTextSize(block);
-		const expected = refrence && Block.getSiblingSize(refrence, this._step);
+
+		if (!refrence) {
+			return true;
+		}
+
+		const expected = Block.getSiblingSize(refrence, this._step);
 
 		if (!expected) {
 			return false;

@@ -40,6 +40,9 @@ const expected = [
 	},
 ];
 
+const hardInvalid = JSON.stringify(
+	require('./_data/input-label-sizes/hard-invalid.json'), null, 4);
+
 it('FORM.INPUT_AND_LABEL_SIZES_SHOULD_BE_EQUAL', () => {
 	global.linter(valid, (actual) => {
 		assert.deepStrictEqual(actual, []);
@@ -47,5 +50,12 @@ it('FORM.INPUT_AND_LABEL_SIZES_SHOULD_BE_EQUAL', () => {
 
 	global.linter(invalid, (actual) => {
 		assert.deepStrictEqual(actual, expected);
+	});
+
+	global.linter(hardInvalid, (actual) => {
+		const codes = actual.map((err) => err.code);
+		assert.strictEqual(actual.length, 1);
+		assert.strictEqual(
+			codes.includes('FORM.INPUT_AND_LABEL_SIZES_SHOULD_BE_EQUAL'), true);
 	});
 });

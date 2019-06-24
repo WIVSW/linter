@@ -1,0 +1,23 @@
+{
+	"block": "form",
+	"content": [
+		{
+			"block": "form",
+			"elem": "header",
+			"content": [
+				{
+					"block": "text",
+					"mods": {
+						"size": "xxl"
+					}
+				}
+			]
+		},
+		{
+			"block": "input",
+			"mods": {
+				"size": "l"
+			}
+		}
+	]
+}

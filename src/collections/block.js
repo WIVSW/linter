@@ -32,20 +32,19 @@ class BlockCollection {
 	 * @return {boolean}
 	 */
 	isFormTextElement(block) {
-		const {INPUT, TEXT, LABEL} = Block.TextElements;
+		const {INPUT, TEXT, LABEL, BUTTON} = Block.TextElements;
+		const blocks = [INPUT, BUTTON];
 
-		if (
-			block.block === INPUT ||
-			block.block === 'form' &&
-			block.elem === LABEL
-		) {
+		if (blocks.includes(block.block)) {
 			return true;
 		}
 
 		if (block.block === TEXT && typeof block.parentId === 'number') {
 			const parent = this.getById(block.parentId);
 
-			return parent ? parent.elem === LABEL : false;
+			return parent ?
+				parent.block === 'form' &&
+				parent.elem === LABEL : false;
 		}
 
 		return false;
@@ -78,17 +77,15 @@ class BlockCollection {
 	getRefrenceTextSize(childBlock) {
 		const form = this.getForm(childBlock);
 
-		if (!form) {
+		if (!form || typeof form.id !== 'number') {
 			return null;
 		}
 
-		const id = /** @type {number} */ (form.id);
-
-		if (typeof this._formsSizeCache[id] !== 'string') {
-			this._formsSizeCache[id] = this._getRefrenceTextSize(form);
+		if (typeof this._formsSizeCache[form.id] === 'undefined') {
+			this._formsSizeCache[form.id] = this._getRefrenceTextSize(form);
 		}
 
-		return this._formsSizeCache[id];
+		return this._formsSizeCache[form.id];
 	}
 
 	/**
@@ -186,7 +183,7 @@ class BlockCollection {
 	 * @private
 	 */
 	_getRefrenceTextSize(formBlock) {
-		const child = formBlock && this
+		const child = this
 			.getAllBlockChidren(formBlock)
 			.find((child) =>
 				this.isFormTextElement(child) &&

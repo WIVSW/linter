@@ -1,0 +1,33 @@
+{
+	"block": "form",
+	"content": [
+		{
+			"block": "text",
+			"mods": {
+				"size": "s"
+			}
+		},
+		{
+			"block": "form",
+			"elem": "label",
+			"content": {
+				"block": "text",
+				"mods": {
+					"size": "l"
+				}
+			}
+		},
+		{
+			"block": "button",
+			"mods": {
+				"size": "xs"
+			}
+		},
+		{
+			"block": "input",
+			"mods": {
+				"size": "xxl"
+			}
+		}
+	]
+}
