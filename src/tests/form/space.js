@@ -59,11 +59,17 @@ class Space extends Test {
 			return false;
 		}
 
-		return block.mix
-			.filter((mixed) =>
-				mixed.elem === 'item' &&
-				mixed.mods[this._mod] !== expected
-			).length <= 0;
+		const mix = block.mix.find((mix) =>
+			mix.block === 'form' &&
+			mix.elem === 'item' &&
+			typeof mix.mods[this._mod] === 'string'
+		);
+
+		if (!mix) {
+			return false;
+		}
+
+		return mix.mods[this._mod] === expected;
 	}
 }
 

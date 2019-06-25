@@ -70,11 +70,12 @@ class ContentItemIndent extends Test {
 
 		const mix = block.mix.find((mix) =>
 			mix.block === 'form' &&
-			mix.elem === 'item'
+			mix.elem === 'item' &&
+			typeof mix.mods['indent-b'] === 'string'
 		);
 
 		if (!mix) {
-			return true;
+			return false;
 		}
 
 		return this._mod(mix) === this._mod(block) &&
