@@ -70,21 +70,15 @@ class ContentItemIndent extends Test {
 
 		const mix = block.mix.find((mix) =>
 			mix.block === 'form' &&
-			mix.elem === 'item' &&
-			typeof mix.mods['indent-b'] === 'string'
+			mix.elem === 'item'
 		);
 
-		const isMixExist = Boolean(mix);
-		const isModExist = Boolean(block.mods['indent-b']);
-
-		if (this._isLastChild(block)) {
-			return !isMixExist && !isModExist;
-		} else if (!isMixExist || !isModExist) {
-			return false;
+		if (!mix) {
+			return true;
 		}
 
-		return mix.mods['indent-b'] === expected &&
-			block.mods['indent-b'] === expected;
+		return this._mod(mix) === this._mod(block) &&
+			this._mod(mix) === expected;
 	}
 
 	/**
@@ -106,6 +100,15 @@ class ContentItemIndent extends Test {
 
 		return typeof lastChildId === 'number' ?
 			lastChildId === elem.id : false;
+	}
+
+	/**
+	 * @param {Block} block
+	 * @return {?string}
+	 * @private
+	 */
+	_mod(block) {
+		return block.mods['indent-b'];
 	}
 }
 
