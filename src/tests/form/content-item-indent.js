@@ -75,6 +75,8 @@ class ContentItemIndent extends Test {
 		);
 
 		if (!mix) {
+			return this._isLastChild(block);
+		} else if (this._isLastChild(block)) {
 			return false;
 		}
 
