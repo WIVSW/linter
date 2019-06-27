@@ -80,8 +80,7 @@ class ContentItemIndent extends Test {
 			return false;
 		}
 
-		return this._mod(mix) === this._mod(block) &&
-			this._mod(mix) === expected;
+		return this._mod(mix) === expected;
 	}
 
 	/**
