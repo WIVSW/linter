@@ -1,9 +1,9 @@
 const Test = require('../test.js');
 const InputLabelSizeError =
 	require('../../models/errors/form/input-label-sizes.js');
-const Block = require('../../models/block.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
+const Block = require('../../models/block.js');
 const BlockCollection = require('../../collections/block.js');
 /* eslint-enable no-unused-vars */
 
@@ -43,8 +43,7 @@ class InputLabelSize extends Test {
 			.map((child) => child.mods['size'])
 			.filter((val, i, self) => self.indexOf(val) === i);
 
-		return sizes.length === 1 &&
-			Boolean(Block.getSiblingSize(sizes[0], 0));
+		return sizes.length === 1;
 	}
 }
 

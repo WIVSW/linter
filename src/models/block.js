@@ -156,14 +156,9 @@ class Block {
 	 * @return {?string}
 	 */
 	static getSiblingSize(size, steps) {
-		const sizes = Block.SIZES.slice(2, -2);
-		const index = sizes.indexOf(size);
-
-		if (index === -1) {
-			return null;
-		}
-
-		return Block.getSizeByIndex(index + steps);
+		return Block.getSizeByIndex(
+			Block.getIndexBySize(size) + steps
+		) || null;
 	}
 
 	/**
