@@ -63,19 +63,20 @@ class ContentItemIndent extends Test {
 			return true;
 		}
 
-		const mix = block.mix.find((mix) =>
+		const mixes = block.mix.filter((mix) =>
 			mix.block === 'form' &&
 			mix.elem === 'item' &&
 			typeof mix.mods['indent-b'] !== 'undefined'
 		);
 
-		if (!mix) {
+		if (!mixes.length) {
 			return this._isLastChild(block);
 		} else if (this._isLastChild(block)) {
 			return false;
 		}
 
-		return this._mod(mix) === expected;
+		return mixes.length === 1 &&
+			mixes[0].mods['indent-b'] === expected;
 	}
 
 	/**
