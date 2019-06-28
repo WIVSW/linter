@@ -49,11 +49,11 @@ class TextSize extends Test {
 		const expected = refrence && Block.getSiblingSize(refrence, this._step);
 
 		if (!expected) {
-			return false;
+			return true;
 		}
 
-		if (typeof block.mods['size'] === 'undefined') {
-			return false;
+		if (typeof block.mods['size'] !== 'string') {
+			return true;
 		}
 
 		return block.mods['size'] === expected;

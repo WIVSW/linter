@@ -60,13 +60,13 @@ class ContentItemIndent extends Test {
 		const expected = refrence && Block.getSiblingSize(refrence, 1);
 
 		if (!expected) {
-			return false;
+			return true;
 		}
 
 		const mixes = block.mix.filter((mix) =>
 			mix.block === 'form' &&
 			mix.elem === 'item' &&
-			typeof mix.mods['indent-b'] !== 'undefined'
+			typeof mix.mods['indent-b'] === 'string'
 		);
 
 		if (!mixes.length) {

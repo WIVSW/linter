@@ -51,13 +51,13 @@ class Space extends Test {
 		const expected = refrence && Block.getSiblingSize(refrence, this._step);
 
 		if (!expected) {
-			return false;
+			return true;
 		}
 
 		const mixes = block.mix.filter((mix) =>
 			mix.block === 'form' &&
 			mix.elem === 'item' &&
-			typeof mix.mods[this._mod] !== 'undefined'
+			typeof mix.mods[this._mod] === 'string'
 		);
 
 		return mixes.length === 1 &&
