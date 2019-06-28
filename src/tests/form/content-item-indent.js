@@ -57,21 +57,16 @@ class ContentItemIndent extends Test {
 	 */
 	_isValidBlock(block) {
 		const refrence = this._collection.getRefrenceTextSize(block);
-
-		if (!refrence) {
-			return true;
-		}
-
-		const expected = Block.getSiblingSize(refrence, 1);
+		const expected = refrence && Block.getSiblingSize(refrence, 1);
 
 		if (!expected) {
-			return false;
+			return true;
 		}
 
 		const mix = block.mix.find((mix) =>
 			mix.block === 'form' &&
 			mix.elem === 'item' &&
-			typeof mix.mods['indent-b'] === 'string'
+			typeof mix.mods['indent-b'] !== 'undefined'
 		);
 
 		if (!mix) {

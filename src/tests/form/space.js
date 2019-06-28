@@ -48,25 +48,20 @@ class Space extends Test {
 	 */
 	_isValidBlock(block) {
 		const refrence = this._collection.getRefrenceTextSize(block);
-
-		if (!refrence) {
-			return true;
-		}
-
-		const expected = Block.getSiblingSize(refrence, this._step);
+		const expected = refrence && Block.getSiblingSize(refrence, this._step);
 
 		if (!expected) {
-			return false;
+			return true;
 		}
 
 		const mix = block.mix.find((mix) =>
 			mix.block === 'form' &&
 			mix.elem === 'item' &&
-			typeof mix.mods[this._mod] === 'string'
+			typeof mix.mods[this._mod] !== 'undefined'
 		);
 
 		if (!mix) {
-			return false;
+			return true;
 		}
 
 		return mix.mods[this._mod] === expected;
