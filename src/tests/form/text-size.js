@@ -53,7 +53,7 @@ class TextSize extends Test {
 		}
 
 		if (typeof block.mods['size'] === 'undefined') {
-			return true;
+			return false;
 		}
 
 		return block.mods['size'] === expected;

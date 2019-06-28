@@ -61,7 +61,7 @@ class Space extends Test {
 		);
 
 		if (!mix) {
-			return true;
+			return false;
 		}
 
 		return mix.mods[this._mod] === expected;
