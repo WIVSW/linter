@@ -12,12 +12,13 @@ class TextSize extends ExpectedSizeTest {
 	 * @param {TextSize.Params} params
 	 */
 	constructor(params) {
+		const {SIZE} = Block.Mods;
 		super({
 			Model: params.Model,
 			collection: params.collection,
 			elem: params.elem,
 			step: params.step,
-			mod: 'size',
+			mod: SIZE,
 		});
 	}
 

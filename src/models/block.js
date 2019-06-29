@@ -191,6 +191,47 @@ Block.TextElements = {
 
 
 /**
+ * @enum {string}
+ */
+Block.BlockNames = {
+	FORM: 'form',
+};
+
+
+/**
+ * @enum {string}
+ */
+Block.ElementsNames = {
+	FOOTER: 'footer',
+	HEADER: 'header',
+	CONTENT: 'content',
+	ITEM: 'item',
+	CONTENT_ITEM: 'content-item',
+};
+
+
+/**
+ * @enum {string}
+ */
+Block.Mods = {
+	SIZE: 'size',
+	INDENT_B: 'indent-b',
+	SPACE_V: 'space-v',
+	SPACE_H: 'space-h',
+};
+
+
+/**
+ * @enum {string}
+ */
+Block.TextTypes = {
+	H1: 'h1',
+	H2: 'h2',
+	H3: 'h3',
+};
+
+
+/**
  * @const {Array<string>}
  */
 Block.SIZES = [

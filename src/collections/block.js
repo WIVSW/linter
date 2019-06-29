@@ -32,6 +32,7 @@ class BlockCollection {
 	 * @return {boolean}
 	 */
 	isFormTextElement(block) {
+		const {FORM} = Block.BlockNames;
 		const {INPUT, TEXT, LABEL, BUTTON} = Block.TextElements;
 		const blocks = [INPUT, BUTTON];
 
@@ -43,7 +44,7 @@ class BlockCollection {
 			const parent = this.getById(block.parentId);
 
 			return parent ?
-				parent.block === 'form' &&
+				parent.block === FORM &&
 				parent.elem === LABEL : false;
 		}
 
@@ -55,8 +56,9 @@ class BlockCollection {
 	 * @return {?Block}
 	 */
 	getForm(childBlock) {
+		const {FORM} = Block.BlockNames;
 		let parent = childBlock;
-		const isForm = (block) => block.block === 'form' && !block.isElement();
+		const isForm = (block) => block.block === FORM && !block.isElement();
 
 		while (
 			parent &&
@@ -108,9 +110,10 @@ class BlockCollection {
 	 * @return {Array<Block>}
 	 */
 	getHeadings(type) {
+		const {TEXT} = Block.TextElements;
 		return this._list
 			.filter((block) =>
-				block.block === 'text' &&
+				block.block === TEXT &&
 				block.mods['type'] === type
 			);
 	}
@@ -159,10 +162,11 @@ class BlockCollection {
 	 * @private
 	 */
 	_getRefrenceTextSize(formBlock) {
+		const {SIZE} = Block.Mods;
 		const sizes = this
 			.getAllBlockChidren(formBlock)
 			.filter((child) => this.isFormTextElement(child))
-			.map((child) => child.mods['size'])
+			.map((child) => child.mods[SIZE])
 			.filter((val, i, self) => self.indexOf(val) === i);
 
 		return sizes.length === 1 ? sizes[0] : null;

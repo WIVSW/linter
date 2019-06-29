@@ -40,7 +40,8 @@ class ExpectedSize extends Test {
 	 * @override
 	 */
 	_selectBlocks(collection) {
-		return collection.getElementsByName('form', this._elem);
+		const {FORM} = Block.BlockNames;
+		return collection.getElementsByName(FORM, this._elem);
 	}
 
 	/**

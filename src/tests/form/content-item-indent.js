@@ -1,9 +1,9 @@
 const ExpectedSizeTest = require('./expected-size.js');
 const ContentItemIndentError =
 	require('../../models/errors/form/content-item-indent.js');
+const Block = require('../../models/block.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
-const Block = require('../../models/block.js');
 const BlockCollection = require('../../collections/block.js');
 /* eslint-enable no-unused-vars */
 
@@ -14,11 +14,13 @@ class ContentItemIndent extends ExpectedSizeTest {
 	 * @param {BlockCollection} collection
 	 */
 	constructor(collection) {
+		const {INDENT_B} = Block.Mods;
+		const {CONTENT_ITEM} = Block.ElementsNames;
 		super({
 			Model: ContentItemIndentError,
 			collection,
-			elem: 'content-item',
-			mod: 'indent-b',
+			elem: CONTENT_ITEM,
+			mod: INDENT_B,
 			step: 1,
 		});
 
@@ -54,9 +56,11 @@ class ContentItemIndent extends ExpectedSizeTest {
 	 * @override
 	 */
 	_hasValidTextSize(block, expected, modName) {
+		const {FORM} = Block.BlockNames;
+		const {ITEM} = Block.ElementsNames;
 		const mixes = block.mix.filter((mix) =>
-			mix.block === 'form' &&
-			mix.elem === 'item' &&
+			mix.block === FORM &&
+			mix.elem === ITEM &&
 			typeof mix.mods[modName] === 'string'
 		);
 

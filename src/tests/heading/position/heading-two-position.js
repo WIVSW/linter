@@ -1,6 +1,7 @@
 const PositionTest = require('../position.js');
 const HeadingTwoPositionError =
 	require('../../../models/errors/heading/heading-two-position.js');
+const Block = require('../../../models/block.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
 const BlockCollection = require('../../../collections/block.js');
@@ -13,11 +14,12 @@ class HeadingTwoPosition extends PositionTest {
 	 * @param {BlockCollection} collection
 	 */
 	constructor(collection) {
+		const {H1, H2} = Block.TextTypes;
 		super({
 			Model: HeadingTwoPositionError,
 			collection,
-			targetType: 'h2',
-			higherType: 'h1',
+			targetType: H2,
+			higherType: H1,
 		});
 	}
 }

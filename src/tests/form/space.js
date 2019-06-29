@@ -1,4 +1,5 @@
 const ExpectedSizeTest = require('./expected-size.js');
+const Block = require('../../models/block.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
 const BlockCollection = require('../../collections/block.js');
@@ -24,9 +25,11 @@ class Space extends ExpectedSizeTest {
 	 * @override
 	 */
 	_hasValidTextSize(block, expected, modName) {
+		const {FORM} = Block.BlockNames;
+		const {ITEM} = Block.ElementsNames;
 		const mixes = block.mix.filter((mix) =>
-			mix.block === 'form' &&
-			mix.elem === 'item' &&
+			mix.block === FORM &&
+			mix.elem === ITEM &&
 			typeof mix.mods[modName] === 'string'
 		);
 
