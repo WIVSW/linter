@@ -1,4 +1,4 @@
-const Test = require('../test.js');
+const ExpectedSizeTest = require('./expected-size.js');
 const ContentItemIndentError =
 	require('../../models/errors/form/content-item-indent.js');
 /* eslint-disable no-unused-vars */
@@ -9,7 +9,7 @@ const BlockCollection = require('../../collections/block.js');
 
 /**
  */
-class ContentItemIndent extends Test {
+class ContentItemIndent extends ExpectedSizeTest {
 	/**
 	 * @param {BlockCollection} collection
 	 */
@@ -17,6 +17,9 @@ class ContentItemIndent extends Test {
 		super({
 			Model: ContentItemIndentError,
 			collection,
+			elem: 'content-item',
+			mod: 'indent-b',
+			step: 1,
 		});
 
 		/**
@@ -27,13 +30,10 @@ class ContentItemIndent extends Test {
 	}
 
 	/**
-	 * @param {BlockCollection} collection
-	 * @return {Array<Block>}
-	 * @protected
+	 * @override
 	 */
 	_selectBlocks(collection) {
-		const elements = collection
-			.getElementsByName('form', 'content-item');
+		const elements = super._selectBlocks(collection);
 
 		elements.forEach((elem) => {
 			if (typeof elem.parentId !== 'number') {
@@ -51,40 +51,23 @@ class ContentItemIndent extends Test {
 	}
 
 	/**
-	 * @param {Block} block
-	 * @return {boolean}
-	 * @protected
+	 * @override
 	 */
-	_isValidBlock(block) {
-		const refrence = this._collection.getRefrenceTextSize(block);
-
-		if (!refrence) {
-			return true;
-		}
-
-		const expected = Block.getSiblingSize(refrence, 1);
-
-		if (!expected) {
-			return false;
-		}
-
-		const mix = block.mix.find((mix) =>
+	_hasValidTextSize(block, expected, modName) {
+		const mixes = block.mix.filter((mix) =>
 			mix.block === 'form' &&
 			mix.elem === 'item' &&
-			typeof mix.mods['indent-b'] === 'string'
+			typeof mix.mods[modName] === 'string'
 		);
 
-		const isMixExist = Boolean(mix);
-		const isModExist = Boolean(block.mods['indent-b']);
-
-		if (this._isLastChild(block)) {
-			return !isMixExist && !isModExist;
-		} else if (!isMixExist || !isModExist) {
+		if (!mixes.length) {
+			return this._isLastChild(block);
+		} else if (this._isLastChild(block)) {
 			return false;
 		}
 
-		return mix.mods['indent-b'] === expected &&
-			block.mods['indent-b'] === expected;
+		return mixes.length === 1 &&
+			mixes[0].mods[modName] === expected;
 	}
 
 	/**

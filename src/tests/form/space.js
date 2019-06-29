@@ -1,5 +1,4 @@
-const Test = require('../test.js');
-const Block = require('../../models/block.js');
+const ExpectedSizeTest = require('./expected-size.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
 const BlockCollection = require('../../collections/block.js');
@@ -7,7 +6,7 @@ const BlockCollection = require('../../collections/block.js');
 
 /**
  */
-class Space extends Test {
+class Space extends ExpectedSizeTest {
 	/**
 	 * @param {Space.Params} params
 	 */
@@ -15,55 +14,24 @@ class Space extends Test {
 		super({
 			Model: params.Model,
 			collection: params.collection,
+			elem: params.elem,
+			mod: params.mod,
+			step: params.step,
 		});
-
-		/**
-		 * @type {string}
-		 * @private
-		 */
-		this._elem = params.elem;
-
-		/**
-		 * @type {string}
-		 * @private
-		 */
-		this._mod = params.mod;
-
-		/**
-		 * @type {number}
-		 * @private
-		 */
-		this._step = params.step;
 	}
 
 	/**
 	 * @override
 	 */
-	_selectBlocks(collection) {
-		return collection.getElementsByName('form', this._elem);
-	}
+	_hasValidTextSize(block, expected, modName) {
+		const mixes = block.mix.filter((mix) =>
+			mix.block === 'form' &&
+			mix.elem === 'item' &&
+			typeof mix.mods[modName] === 'string'
+		);
 
-	/**
-	 * @override
-	 */
-	_isValidBlock(block) {
-		const refrence = this._collection.getRefrenceTextSize(block);
-
-		if (!refrence) {
-			return true;
-		}
-
-		const expected = Block.getSiblingSize(refrence, this._step);
-
-		if (!expected) {
-			return false;
-		}
-
-		return block.mix
-			.filter((mixed) =>
-				mixed.elem === 'item' &&
-				mixed.mods[this._mod] !== expected
-			).length <= 0;
+		return mixes.length === 1 &&
+			mixes[0].mods[modName] === expected;
 	}
 }
 
