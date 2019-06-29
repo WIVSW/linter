@@ -44,17 +44,6 @@ const invalid = `{
     }
 }`;
 
-const expected = [
-	{
-		'code': 'FORM.CONTENT_ITEM_INDENT_IS_INVALID',
-		'error': 'Не валидные отступы между строк формы',
-		'location': {
-			'start': {'column': 13, 'line': 7},
-			'end': {'column': 14, 'line': 12},
-		},
-	},
-];
-
 const json = (json) => JSON.stringify(json, null, 4);
 const single = json(require('./_data/content-item-indent/single-invalid.json'));
 const two = json(require('./_data/content-item-indent/two-invalid.json'));

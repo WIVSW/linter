@@ -47,17 +47,6 @@ const invalid = `{
     ]
 }`;
 
-const expected = [
-	{
-		'code': 'FORM.FOOTER_TEXT_SIZE_IS_INVALID',
-		'error': 'Не валидный размер текста footer',
-		'location': {
-			'start': {'column': 17, 'line': 14},
-			'end': {'column': 18, 'line': 19},
-		},
-	},
-];
-
 it('FORM.FOOTER_TEXT_SIZE_IS_INVALID', () => {
 	global.linter(valid, (actual) => {
 		const codes = actual.map((err) => err.code);

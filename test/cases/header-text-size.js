@@ -47,17 +47,6 @@ const invalid = `{
     ]
 }`;
 
-const expected = [
-	{
-		'code': 'FORM.HEADER_TEXT_SIZE_IS_INVALID',
-		'error': 'Не валидный размер текста header',
-		'location': {
-			'start': {'column': 17, 'line': 8},
-			'end': {'column': 18, 'line': 13},
-		},
-	},
-];
-
 it('FORM.HEADER_TEXT_SIZE_IS_INVALID', () => {
 	global.linter(valid, (actual) => {
 		const codes = actual.map((err) => err.code);

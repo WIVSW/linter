@@ -35,17 +35,6 @@ const invalid = `{
     ]
 }`;
 
-const expected = [
-	{
-		'code': 'FORM.FOOTER_HORIZONTAL_SPACE_IS_INVALID',
-		'error': 'Горизонтальный внутренний отступ подвала формы не валиден',
-		'location': {
-			'start': {'column': 9, 'line': 10},
-			'end': {'column': 10, 'line': 14},
-		},
-	},
-];
-
 it('FORM.FOOTER_HORIZONTAL_SPACE_IS_INVALID', () => {
 	global.linter(valid, (actual) => {
 		const codes = actual.map((err) => err.code);

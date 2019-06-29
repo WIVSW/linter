@@ -63,7 +63,7 @@ describe('TEXT.INVALID_H2_POSITION', () => {
 	}
 ]`;
 
-const invalid = `[
+		const invalid = `[
     {
 		"block": "my-block",
         "content": {
