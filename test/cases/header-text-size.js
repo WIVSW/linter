@@ -60,10 +60,14 @@ const expected = [
 
 it('FORM.HEADER_TEXT_SIZE_IS_INVALID', () => {
 	global.linter(valid, (actual) => {
-		assert.deepStrictEqual(actual, []);
+		const codes = actual.map((err) => err.code);
+		assert.strictEqual(
+			codes.includes('FORM.HEADER_TEXT_SIZE_IS_INVALID'), false);
 	});
 
 	global.linter(invalid, (actual) => {
-		assert.deepStrictEqual(actual, expected);
+		const codes = actual.map((err) => err.code);
+		assert.strictEqual(
+			codes.includes('FORM.HEADER_TEXT_SIZE_IS_INVALID'), true);
 	});
 });

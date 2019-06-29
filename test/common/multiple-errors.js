@@ -73,15 +73,9 @@ describe('Can recieve multiple errors', () => {
 	it('Can parse multiple form incorrect blocks', () => {
 		global.linter(oneElementTwoError, (actual) => {
 			const codes = actual.map((err) => err.code);
-			assert.strictEqual(actual.length, 4);
-			assert.strictEqual(
-				codes.includes('FORM.CONTENT_ITEM_INDENT_IS_INVALID'), true);
+			assert.strictEqual(actual.length, 1);
 			assert.strictEqual(
 				codes.includes('FORM.INPUT_AND_LABEL_SIZES_SHOULD_BE_EQUAL'), true);
-			assert.strictEqual(
-				codes.includes('FORM.CONTENT_HORIZONTAL_SPACE_IS_INVALID'), true);
-			assert.strictEqual(
-				codes.includes('FORM.CONTENT_VERTICAL_SPACE_IS_INVALID'), true);
 		});
 	});
 });
