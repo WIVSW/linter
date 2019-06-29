@@ -56,7 +56,7 @@ class BlockCollection {
 	 */
 	getForm(childBlock) {
 		let parent = childBlock;
-		const isForm = (block) => block.block === 'form' && !block.elem;
+		const isForm = (block) => block.block === 'form' && !block.isElement();
 
 		while (
 			parent &&
@@ -137,30 +137,6 @@ class BlockCollection {
 				block.block === blockName &&
 				block.elem === elemName
 			);
-	}
-
-	/**
-	 * @param {string} block
-	 * @param {string} elem
-	 * @param {string} mod
-	 * @return {Array<Block>}
-	 */
-	getElementsWithMod(block, elem, mod) {
-		return this._list
-			.filter((item) =>
-				item.block === block &&
-				item.elem === elem &&
-				item.mix.some((mixed) => mixed.mods[mod])
-			);
-	}
-
-	/**
-	 * @param {Block} block
-	 * @return {Array<Block>}
-	 */
-	getDirectChildren(block) {
-		return block.children
-			.map((id) => this.getById(id));
 	}
 
 	/**
