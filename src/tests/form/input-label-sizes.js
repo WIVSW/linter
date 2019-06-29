@@ -35,15 +35,7 @@ class InputLabelSize extends Test {
 	 * @protected
 	 */
 	_isValidBlock(block) {
-		return this._collection
-			.getAllBlockChidren(block)
-			.filter((child) =>
-				this._collection.isFormTextElement(child) &&
-				Boolean(child.mods['size'])
-			)
-			.map((child) => child.mods['size'])
-			.filter((val, i, self) => self.indexOf(val) === i)
-			.length === 1;
+		return Boolean(this._collection.getRefrenceTextSize(block));
 	}
 }
 
