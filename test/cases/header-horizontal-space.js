@@ -35,17 +35,6 @@ const invalid = `{
     ]
 }`;
 
-const expected = [
-	{
-		'code': 'FORM.HEADER_HORIZONTAL_SPACE_IS_INVALID',
-		'error': 'Горизонтальный внутренний отступ заголовка формы не валиден',
-		'location': {
-			'start': {'column': 9, 'line': 4},
-			'end': {'column': 10, 'line': 8},
-		},
-	},
-];
-
 it('FORM.HEADER_HORIZONTAL_SPACE_IS_INVALID', () => {
 	global.linter(valid, (actual) => {
 		const codes = actual.map((err) => err.code);

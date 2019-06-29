@@ -24,7 +24,7 @@ const withFormButWithoutTextBlocksAst =
 
 describe('Calculation of refrence size should work right...', () => {
 	it('with simple form', () => {
-		loopCollection(new BlockCollection(simpleAst), 'l');
+		loopCollection(new BlockCollection(simpleAst), null);
 	});
 
 	it('with header form', () => {
@@ -32,7 +32,7 @@ describe('Calculation of refrence size should work right...', () => {
 	});
 
 	it('on same level', () => {
-		loopCollection(new BlockCollection(oneLevelAst), 'l');
+		loopCollection(new BlockCollection(oneLevelAst), null);
 	});
 
 	it('without form', () => {

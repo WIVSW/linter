@@ -1,9 +1,9 @@
 const Test = require('../test.js');
 const SeveralHeadingsError =
 	require('../../models/errors/heading/several-headings.js');
+const Block = require('../../models/block.js');
 /* eslint-disable no-unused-vars */
 /* import types for GCC */
-const Block = require('../../models/block.js');
 const BlockCollection = require('../../collections/block.js');
 /* eslint-enable no-unused-vars */
 
@@ -32,7 +32,8 @@ class SeveralHeadings extends Test {
 	 * @protected
 	 */
 	_selectBlocks(collection) {
-		const headings = collection.getHeadings('h1');
+		const {H1} = Block.TextTypes;
+		const headings = collection.getHeadings(H1);
 
 		if (headings.length) {
 			this._fisrtHeading = headings[0];
