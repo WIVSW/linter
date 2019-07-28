@@ -42,16 +42,6 @@ it('Should correctly parse block collection with children', () => {
 					line: 17,
 				},
 			},
-			contentLocation: {
-				start: {
-					column: 16,
-					line: 3,
-				},
-				end: {
-					column: 6,
-					line: 16,
-				},
-			},
 		},
 		{
 			id: 1,
@@ -69,16 +59,6 @@ it('Should correctly parse block collection with children', () => {
 				end: {
 					column: 10,
 					line: 11,
-				},
-			},
-			contentLocation: {
-				start: {
-					column: 24,
-					line: 7,
-				},
-				end: {
-					column: 14,
-					line: 10,
 				},
 			},
 		},
@@ -100,7 +80,6 @@ it('Should correctly parse block collection with children', () => {
 					line: 10,
 				},
 			},
-			contentLocation: null,
 		},
 		{
 			id: 3,
@@ -120,7 +99,6 @@ it('Should correctly parse block collection with children', () => {
 					line: 15,
 				},
 			},
-			contentLocation: null,
 		},
 	];
 	const actual = new BlockCollection(input).getAllItems();

@@ -34,9 +34,6 @@ class Block {
 		/** @type {Location} */
 		this.location;
 
-		/** @type {?Location} */
-		this.contentLocation;
-
 		this._parse(objExp, id, optParentId);
 	}
 
@@ -55,7 +52,6 @@ class Block {
 	_parse(objExp, id, optParentId) {
 		const block = Block.getProp(objExp, 'block');
 		const elem = Block.getProp(objExp, 'elem');
-		const content = Block.getProp(objExp, 'content');
 
 		this.id = id;
 		this.block = block ? block.value : '';
@@ -65,7 +61,6 @@ class Block {
 		this.mix = Block.getMix(objExp);
 		this.parentId = typeof optParentId === 'number' ? optParentId : null;
 		this.location = new Location(objExp.loc);
-		this.contentLocation = content ? new Location(content.loc) : null;
 	}
 
 	/**
